@@ -1,0 +1,50 @@
+{
+  "name": "restaurant",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "node aspnetcore-https.js && vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "core-js": "^3.8.3",
+    "eslint": "^7.20.0",
+    "vue": "^3.0.5",
+    "vue-router": "^4.0.6"
+  },
+  "devDependencies": {
+    "@types/ts-nameof": "^4.2.1",
+    "@typescript-eslint/eslint-plugin": "^4.18.0",
+    "@typescript-eslint/parser": "^4.18.0",
+    "@vue/cli": "^4.5.11",
+    "@vue/cli-plugin-babel": "^4.5.11",
+    "@vue/cli-plugin-eslint": "^4.5.11",
+    "@vue/cli-plugin-typescript": "^4.5.11",
+    "@vue/cli-service": "^4.5.11",
+    "@vue/compiler-sfc": "^3.0.5",
+    "@vue/eslint-config-prettier": "^6.0.0",
+    "@vue/eslint-config-typescript": "^7.0.0",
+    "autoprefixer": "^9.8.6",
+    "babel-eslint": "^10.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.5.0",
+    "eslint-webpack-plugin": "^2.5.1",
+    "jest": "^27.3.1",
+    "jest-editor-support": "^30.0.2",
+    "node-sass": "^6.0.0",
+    "postcss": "^7.0.36",
+    "prettier": "^2.4.1",
+    "reflect-metadata": "^0.1.13",
+    "sass-loader": "^10.1.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.4",
+    "ts-nameof": "^5.0.0",
+    "ts-nameof-loader": "^1.0.2",
+    "typescript": "^4.1.5",
+    "vue-class-component": "^8.0.0-rc.1",
+    "vue-property-decorator": "^9.1.2",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
