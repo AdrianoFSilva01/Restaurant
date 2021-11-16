@@ -1,0 +1,23 @@
+hr {
+    @apply border-black w-full;
+}
+
+.hamburgerMenu {
+    @apply w-4 space-y-1;
+
+    :nth-child(n) {
+        @apply transition-all duration-500;
+    }
+
+    &:hover {
+        :nth-child(1) {
+            @apply transform -translate-y-0.5;
+        }
+        :nth-child(2) {
+            @apply opacity-0;
+        }
+        :nth-child(3) {
+            @apply transform translate-y-0.5;
+        }
+    }
+}
