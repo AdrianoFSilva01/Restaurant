@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <Header />
+        <Header @hamburger-menu-clicked="oi" />
         <HelloWorld />
     </div>
 </template>
@@ -16,5 +16,9 @@ import Header from "@/Views/Header.vue";
         Header
     }
 })
-export default class MasterPage extends Vue {}
+export default class MasterPage extends Vue {
+    oi(): void {
+        console.log("oi");
+    }
+}
 </script>
