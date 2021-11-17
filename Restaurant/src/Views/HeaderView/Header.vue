@@ -1,11 +1,11 @@
 <template>
-    <div class="flex p-8 items-center">
+    <div class="flex p-8 justify-between items-center">
         <div class="leading-3 text-sm">
             Order
             <br />
             Now
         </div>
-        <div class="flex flex-grow justify-center h-14">
+        <div class="flex justify-center h-14">
             <img src="@/Assets/Images/logo.svg" />
         </div>
         <div class="hamburgerMenu" @click="hamburgerMenuOnClick">
