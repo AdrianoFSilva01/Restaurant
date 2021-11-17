@@ -1,0 +1,72 @@
+.overlay {
+    @apply absolute z-10 transition-all duration-1000 space-y-8 w-full h-full p-8 font-bold text-white bg-gray-700 overflow-auto;
+
+    &.over > *,
+    &.over > * > * {
+        @apply visible opacity-100;
+    }
+
+    & > *,
+    & > * > * {
+        @apply transition-all duration-1000 opacity-0;
+    }
+
+    hr {
+        @apply w-full border-white border-opacity-50;
+    }
+
+    .closeButton {
+        @apply flex justify-center items-center w-10 h-10 float-right;
+
+        &::after {
+            @apply fixed border border-white border-opacity-50 rounded-full;
+            width: inherit;
+            height: inherit;
+            content: "";
+        }
+
+        hr {
+            @apply fixed w-5 h-px bg-white border-white;
+
+            &:first-child {
+                @apply transform rotate-45;
+            }
+
+            &:last-child {
+                @apply transform -rotate-45;
+            }
+        }
+    }
+
+    .navigationList {
+        @apply text-2xl space-y-4;
+    }
+
+    .orderButton {
+        @apply w-full border border-white font-bold p-2 text-sm;
+    }
+
+    .contactList {
+        @apply text-sm space-y-4;
+
+        ul {
+            @apply flex space-x-4;
+
+            img {
+                @apply w-5;
+            }
+        }
+    }
+
+    .socialList {
+        @apply space-y-4 text-sm;
+
+        ul {
+            @apply flex space-x-4 items-center;
+
+            div {
+                @apply w-7 h-7 p-1 border border-white rounded-full flex justify-center items-center;
+            }
+        }
+    }
+}
