@@ -4,7 +4,7 @@ import axios from 'axios';
 import { App, createApp } from 'vue';
 import MasterPage from './MasterPage/MasterPage.vue';
 
-const app: App<Element> =  createApp(MasterPage);
+const app: App<Element> = createApp(MasterPage);
 
 app.provide(nameof(axios), axios.create());
 
