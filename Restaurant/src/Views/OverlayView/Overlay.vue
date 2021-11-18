@@ -1,5 +1,5 @@
 <template>
-    <div class="overlay" :class="{ over : animateChilds }" @transitionend.self="onTransitionEnd" v-delayed-childs="[0.1, 'delayedTransition']">
+    <div class="overlay" :class="{ over : animateChilds }" @transitionend.self="onTransitionEnd" v-delayed-childs="[0.1, 'delayedTransition', 'animate']">
         <div class="closeButton" @click="onClickCloseButton">
             <hr />
             <hr />
