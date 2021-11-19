@@ -9,16 +9,21 @@ module.exports = {
             colors: {
                 ...colors,
                 gold: "#d6a159"
+            },
+            scale: {
+                '-100' : '-1'
             }
         },
         fontFamily: {
             sans: ["Segoe UI"]
-        }
+        },
+
     },
     purge: ["./public/**/*.html", "./src/**/*.{vue,ts}"],
     variants: {
         extend: {
-            width: ['focus']
+            width: ['focus'],
+            backgroundColor: ['active']
         }
     }
 };
