@@ -1,0 +1,43 @@
+.arrowButton {
+    @apply relative flex justify-center items-center;
+
+    .sideLines,
+    .middleLine {
+        @apply transition-all duration-500;
+    }
+
+    &.clickAnimation {
+        .sideLines,
+        .middleLine {
+            @apply bg-orange-400;
+        }
+
+        .sideLines:nth-child(1) {
+            @apply transform scale-y-75 origin-top bottom-0 -rotate-45;
+        }
+
+        .sideLines:nth-child(2) {
+            @apply transform scale-y-75 origin-bottom top-0 rotate-45;
+        }
+
+        .middleLine {
+            @apply transform origin-left scale-x-125;
+        }
+    }
+
+    .sideLines {
+        @apply transform absolute w-px inline-block h-1/2 bg-black left-0 border-none;
+
+        &:nth-child(1) {
+            @apply origin-top bottom-0 -rotate-45;
+        }
+
+        &:nth-child(2) {
+            @apply origin-bottom top-0 rotate-45;
+        }
+    }
+
+    .middleLine {
+        @apply origin-left w-full border-none h-px bg-black;
+    }
+}

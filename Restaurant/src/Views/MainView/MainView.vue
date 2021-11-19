@@ -1,14 +1,11 @@
 <template>
     <div>
-        <section class="space-y-4">
-            <Slider ref="slider" class="slider" :images="sliderImages" @transitionend="this.disableSliderButton = false" />
-            <button @click="onSliderNextButtonClick" :disabled="disableSliderButton">
-                frente
-            </button>
-            <br />
-            <button @click="onSliderPreviousButtonClick" :disabled="disableSliderButton">
-                tras
-            </button>
+        <section class="sliderSection">
+            <Slider ref="slider" class="slider" :images="sliderImages" @transitionend="disableSliderButtons = false" />
+            <div class="arrowsContainer">
+                <AnimatedArrows class="animatedArrows" @click="onSliderPreviousButtonClick" :direction="ArrowDirection.left" :disabled="disableSliderButtons" />
+                <AnimatedArrows class="animatedArrows" @click="onSliderNextButtonClick" :direction="ArrowDirection.right" :disabled="disableSliderButtons" />
+            </div>
         </section>
         <HelloWorld />
     </div>

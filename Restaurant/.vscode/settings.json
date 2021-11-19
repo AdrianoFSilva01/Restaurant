@@ -31,6 +31,7 @@
     "typescript.implementationsCodeLens.enabled": false,
     "typescript.referencesCodeLens.enabled": false,
     "typescript.referencesCodeLens.showOnAllFunctions": false,
+    "vetur.experimental.templateInterpolationService": true,
     "vetur.format.options.tabSize": 4,
     "vetur.format.options.useTabs": false,
     "vetur.validation.templateProps": true,
