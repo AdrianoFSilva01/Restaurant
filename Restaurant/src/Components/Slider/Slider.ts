@@ -45,7 +45,7 @@ export default class Slider extends Vue {
         this.nextImageElement.src = this.images[this.nextIndex];
     }
 
-    replaceClasses(element: HTMLElement, classes: Array<Array<string>>): void {
+    replaceClasses(element: HTMLElement, classes: Array<[string, string]>): void {
         for(const className of classes) {
             element.classList.replace(className[0], className[1]);
         }
