@@ -12,7 +12,7 @@ using Restaurant.API.Persistence;
 namespace Restaurant.API.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20211114122933_initial")]
+    [Migration("20211124200545_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,6 +50,11 @@ namespace Restaurant.API.Migrations
                     b.Property<int?>("CategoryId")
                         .IsRequired()
                         .HasColumnType("int");
+
+                    b.Property<string>("HeroImageUrl")
+                        .HasMaxLength(300)
+                        .IsUnicode(false)
+                        .HasColumnType("varchar(300)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()

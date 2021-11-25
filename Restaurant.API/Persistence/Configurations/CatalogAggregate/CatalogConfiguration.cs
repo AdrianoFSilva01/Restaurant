@@ -16,6 +16,11 @@ public class CatalogConfiguration : IEntityTypeConfiguration<Catalog>
               .HasMaxLength(100)
               .IsUnicode(false);
 
+        entity.Property(i => i.HeroImageUrl)
+              .IsRequired(false)
+              .HasMaxLength(300)
+              .IsUnicode(false);
+
         entity.HasIndex("Name", "CategoryId")
               .IsUnique();
 

@@ -1,8 +1,4 @@
 ﻿namespace Restaurant.API.Dtos.CategoryDtos.GetCategory;
-public class CatalogsInCategory
-{
-    public List<CatalogDetail> Catalogs { get; set; }
-}
 
 public class CatalogDetail
 {

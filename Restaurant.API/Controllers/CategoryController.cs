@@ -7,6 +7,7 @@ using Restaurant.API.Dtos.CategoryDtos.CreateCategory;
 using Restaurant.API.Dtos.CategoryDtos.GetCategories;
 using Restaurant.API.Dtos.CategoryDtos.GetCategory;
 using Restaurant.API.Dtos.CategoryDtos.UpdateCategory;
+using Restaurant.API.Dtos.CategoryDtos.WeeklyCatalogs;
 using Restaurant.API.Entitites.CategoryEntities;
 using Restaurant.API.Persistence;
 using System.Net;
@@ -35,17 +36,73 @@ public class CategoryController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<CatalogsInCategory>> GetCategory(int id)
+    public async Task<ActionResult<CategoryDetail>> GetCategory(int id)
     {
-        CatalogsInCategory category = await _context.Categories
+        var category = await _context.Categories
+            .Select(category => new CategoryDetail
+            {
+                Id = category.Id,
+                Name = category.Name,
+                ImageUrl = category.ImageUrl
+            })
+            .FirstOrDefaultAsync(category => category.Id == id);
+
+        return category;
+    }
+
+    [HttpGet("weekly")]
+    public async Task<ActionResult<List<WeeklyCategoryDetail>>> GetWeeklyCatalogs()
+    {
+        int entradaId = 1;
+        int carneId = 2;
+        int peixeId = 3;
+        var weeklyCatalogsIds = new List<int> {
+            entradaId,
+            carneId,
+            peixeId
+        };
+
+        var category = await _context.Categories
+            .Include(c => c.Catalogs)
+            .ThenInclude(c => c.CatalogInfos)
+            .Where(c => weeklyCatalogsIds.Contains(c.Id))
+            .Select(c => new WeeklyCategoryDetail
+            {
+                Id = c.Id,
+                Name = c.Name,
+                ImageUrl = c.ImageUrl,
+                Catalogs = c.Catalogs
+                    .Select(catalog => new WeeklyCatalogDetail
+                    {
+                        Id = catalog.Id,
+                        Name = catalog.Name,
+                        ImageUrl = catalog.HeroImageUrl,
+                        CatalogInfos = catalog.CatalogInfos
+                            .Select(catalogInfo => new WeeklyCatalogInfoDetail
+                            {
+                                Size = catalogInfo.Size,
+                                Price = catalogInfo.Price,
+                                Description = catalogInfo.Description
+                            }).OrderBy(cI => cI.Price).ToList()
+                    })
+                    .Take(3)
+                    .ToList()
+            })
+            .ToListAsync();
+
+        return category;
+    }
+
+    [HttpGet("{id}/detail")]
+    public async Task<ActionResult<List<CatalogDetail>>> GetCategoryDetail(int id)
+    {
+        var category = await _context.Categories
             .Include(c => c.Catalogs)
             .ThenInclude(c => c.CatalogInfos)
             .Include(c => c.Catalogs)
             .ThenInclude(c => c.Ingredients)
             .Where(c => c.Id == id)
-            .Select(c => new CatalogsInCategory
-            {
-                Catalogs = c.Catalogs
+            .SelectMany(c => c.Catalogs
                 .Select(catalog => new CatalogDetail
                 {
                     Id = catalog.Id,
@@ -60,8 +117,8 @@ public class CategoryController : ControllerBase
                             Description = catalogInfo.Description
                         }).ToList()
                 }).ToList()
-            })
-            .FirstOrDefaultAsync();
+            )
+            .ToListAsync();
 
         return category;
     }

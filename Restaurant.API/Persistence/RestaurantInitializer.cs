@@ -50,12 +50,11 @@ public class RestaurantInitializer
     {
         Categories = new Dictionary<int, Category>()
             {
-                {1, new Category { Name = "Bebidas", ImageUrl = "www.bebidas.com" } },
-                {2, new Category { Name = "Charcutaria", ImageUrl = "www.charcutaria.com" } },
-                {3, new Category { Name = "Frescos", ImageUrl = "www.frescos.com" } },
-                {4, new Category { Name = "Mercearia", ImageUrl = "www.mercearia.com" } },
-                {5, new Category { Name = "Vinhos", ImageUrl = "www.vinhos.com" } },
-                {6, new Category { Name = "Lacticínios", ImageUrl = "www.lacticinios.com" } }
+                {1, new Category { Name = "Entradas", ImageUrl = "http://svgshare.com/i/DvT.svg" } },
+                {2, new Category { Name = "Carnes", ImageUrl = "http://svgshare.com/i/Dwz.svg" } },
+                {3, new Category { Name = "Peixes", ImageUrl = "http://svgshare.com/i/DxV.svg" } },
+                {4, new Category { Name = "Bebidas", ImageUrl = "http://svgshare.com/i/DwK.svg" } },
+                {5, new Category { Name = "Sobremesa", ImageUrl = "http://svgshare.com/i/Dx0.svg" } }
         };
         context.Categories.AddRange(Categories.Values);
 
@@ -161,9 +160,9 @@ public class RestaurantInitializer
 
         common = new Dictionary<int, Catalog>()
             {
-                { id++, new Catalog { Name = "Tarte de Quinoa", ImageUrl = "http://i.imgur.com/nqHxrUQ.png" } },
-                { id++, new Catalog { Name = "Quiche de Legumes", ImageUrl = "http://i.imgur.com/aqNBIvg.png" } },
-                { id++, new Catalog { Name = "Quiche de Salmão", ImageUrl = "http://i.imgur.com/kD3Gai1.png" } },
+                { id++, new Catalog { Name = "Tarte de Quinoa", ImageUrl = "http://i.imgur.com/nqHxrUQ.png", HeroImageUrl = "https://cdn.nomadfoodscdn.com/-/media/project/bluesteel/iglo-pt/receitas/2020/gerador-receitas/tarte-lowcarb-de-quinoa-abobora-e-ervilha-com-salada-de-espinafre-fresco-e-nozes.jpg" } },
+                { id++, new Catalog { Name = "Quiche de Legumes", ImageUrl = "http://i.imgur.com/aqNBIvg.png", HeroImageUrl = "https://cdn.vidaativa.pt/uploads/2020/01/quiche-cogumelos-legumes.jpg" } },
+                { id++, new Catalog { Name = "Quiche de Salmão", ImageUrl = "http://i.imgur.com/kD3Gai1.png", HeroImageUrl = "https://media-manager.noticiasaominuto.com/1920/1605523869/naom_5fb2566929ea5.jpg?crop_params=eyJsYW5kc2NhcGUiOnsiY3JvcFdpZHRoIjoyNTYwLCJjcm9wSGVpZ2h0IjoxNDQwLCJjcm9wWCI6MCwiY3JvcFkiOjIxfSwicG9ydHJhaXQiOnsiY3JvcFdpZHRoIjo5NTQsImNyb3BIZWlnaHQiOjE2OTYsImNyb3BYIjo3NDYsImNyb3BZIjoxMH19" } },
                 { id++, new Catalog { Name = "Tortilhas Verdes", ImageUrl = "http://i.imgur.com/MHgXBK6.png" } },
                 { id++, new Catalog { Name = "Tortilha de Milho", ImageUrl = "http://i.imgur.com/AORyj0l.png" } },
                 { id++, new Catalog { Name = "Wraps com Pepino e Mousse de Salmão", ImageUrl = "http://i.imgur.com/79ubX5o.png" } },
@@ -176,9 +175,9 @@ public class RestaurantInitializer
 
         common = new Dictionary<int, Catalog>()
             {
-                { id++, new Catalog { Name = "Panados no Forno", ImageUrl = "http://i.imgur.com/kceE8UD.png" } },
-                { id++, new Catalog { Name = "Jardineira de Perú", ImageUrl = "http://i.imgur.com/ZouoIsy.png" } },
-                { id++, new Catalog { Name = "Peru", ImageUrl = "http://i.imgur.com/GsrXqKt.png" } },
+                { id++, new Catalog { Name = "Panados no Forno", ImageUrl = "http://i.imgur.com/kceE8UD.png", HeroImageUrl = "https://mamapaleo.blogs.nit.pt/wp-content/uploads/2017/06/IMG_8202-1-1300x731.jpg" } },
+                { id++, new Catalog { Name = "Jardineira de Perú", ImageUrl = "http://i.imgur.com/ZouoIsy.png", HeroImageUrl = "https://www.saborintenso.com/images/receitas/Jardineira-de-Peru-com-Cogumelos-SI-2.jpg" } },
+                { id++, new Catalog { Name = "Peru", ImageUrl = "http://i.imgur.com/GsrXqKt.png", HeroImageUrl = "https://fortissima.com.br/wp-content/uploads/2015/11/peru-de-natal-istock-getty-images1.jpg" } },
                 { id++, new Catalog { Name = "Strogonoff", ImageUrl = "http://i.imgur.com/NYHMnBo.png" } },
                 { id++, new Catalog { Name = "Borrego em Crosta de Alecrim", ImageUrl = "http://i.imgur.com/rSLdbGK.png" } },
                 { id++, new Catalog { Name = "Quiche de Frango", ImageUrl = "http://i.imgur.com/KX1oY9N.png" } },
@@ -191,9 +190,9 @@ public class RestaurantInitializer
 
         common = new Dictionary<int, Catalog>()
             {
-                { id++, new Catalog { Name = "Lombos de Salmão Grelhados", ImageUrl = "http://i.imgur.com/ep15IHE.png" } },
-                { id++, new Catalog { Name = "Bacalhau com Natas", ImageUrl = "http://i.imgur.com/iYgAwFI.png" } },
-                { id++, new Catalog { Name = "Açorda Rica de Marisco", ImageUrl = "http://i.imgur.com/91fjknG.png" } },
+                { id++, new Catalog { Name = "Lombos de Salmão Grelhados", ImageUrl = "http://i.imgur.com/ep15IHE.png", HeroImageUrl = "https://cdn.vidaativa.pt/uploads/2020/01/salmao-grelhado-com-oregaos.jpg" } },
+                { id++, new Catalog { Name = "Bacalhau com Natas", ImageUrl = "http://i.imgur.com/iYgAwFI.png", HeroImageUrl = "https://xtudoreceitas.com/wp-content/uploads/Bacalhau-com-Natas-Simples.jpg" } },
+                { id++, new Catalog { Name = "Açorda Rica de Marisco", ImageUrl = "http://i.imgur.com/91fjknG.png", HeroImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2015/04/A%C3%A7orda-de-mariscos-11.jpg" } },
                 { id++, new Catalog { Name = "Bacalhau à Bras", ImageUrl = "http://i.imgur.com/Zrj0YHS.png" } },
                 { id++, new Catalog { Name = "Carpaccio de Vieiras", ImageUrl = "http://i.imgur.com/1fy55SF.png" } },
                 { id++, new Catalog { Name = "Talharim de Vieiras", ImageUrl = "http://i.imgur.com/DC0THKE.png" } },

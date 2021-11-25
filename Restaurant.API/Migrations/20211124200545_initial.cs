@@ -44,6 +44,7 @@ namespace Restaurant.API.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
                     ImageUrl = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
+                    HeroImageUrl = table.Column<string>(type: "varchar(300)", unicode: false, maxLength: 300, nullable: true),
                     CategoryId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
