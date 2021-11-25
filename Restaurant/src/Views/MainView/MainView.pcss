@@ -13,3 +13,28 @@
         }
     }
 }
+
+.carouselSection {
+    @apply overflow-hidden;
+
+    .carouselBackground {
+        @apply absolute top-0 left-0 object-cover w-full h-full;
+        z-index: -2;
+    }
+
+    .carouselItem {
+        @apply relative w-64 h-80 flex p-4 text-white flex-col flex-1;
+
+        &:before {
+            @apply absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-black to-transparent opacity-75;
+            z-index: -1;
+            content: "";
+        }
+
+        &:after {
+            @apply absolute bottom-0 left-0 w-full h-2/6 bg-gradient-to-b from-transparent to-black opacity-75;
+            z-index: -1;
+            content: "";
+        }
+    }
+}
