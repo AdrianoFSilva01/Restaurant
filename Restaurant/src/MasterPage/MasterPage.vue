@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" :class="{ 'w-screen h-screen overflow-y-hidden' : displayOverlay }">
         <transition name="fade">
             <Overlay v-if="displayOverlay" :display="displayOverlay" @close-button-clicked="displayOverlay = false"  />
         </transition>
