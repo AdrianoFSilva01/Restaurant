@@ -1,54 +1,66 @@
 import { Vue } from "vue-class-component";
-import { Prop, Ref } from "vue-property-decorator";
+import { Prop } from "vue-property-decorator";
 
 export default class Slider extends Vue {
-    @Ref() previousImageElement!: HTMLImageElement;
-    @Ref() currentImageElement!: HTMLImageElement;
-    @Ref() nextImageElement!: HTMLImageElement;
-
     @Prop() images!: Array<string>;
 
+    containerElement!: HTMLElement;
+    containerMaxChildrenLenght: number = 0;
     previousIndex: number = 0;
     currentIndex: number = 0;
     nextIndex: number = 1;
 
     mounted(): void {
+        this.containerElement = this.$el as HTMLElement;
+        this.containerMaxChildrenLenght = this.containerElement.children.length;
+
         this.previousIndex = this.images.length - 1;
 
-        this.changeElementsImage();
+        this.insertInitialImages();
     }
 
-    nextImage(): void {
-        this.currentIndex === this.images.length - 1 ? this.currentIndex = 0 : this.currentIndex++;
+    changeImage(next: boolean): void {
+        const lastElementChild: HTMLElement = this.containerElement.lastElementChild as HTMLElement;
 
-        this.replaceClasses(this.nextImageElement, [["transition-none", "transition-opacity"], ["opacity-0", "opacity-100"]]);
+        if(next) {
+            this.currentIndex === this.images.length - 1 ? this.currentIndex = 0 : this.currentIndex++;
+            this.changeElementOpacity(lastElementChild);
+            this.containerElement.removeChild(lastElementChild.previousElementSibling as HTMLElement);
+        } else {
+            this.currentIndex === 0 ? this.currentIndex = this.images.length - 1 : this.currentIndex--;
+            this.changeElementOpacity(lastElementChild.previousElementSibling as HTMLElement);
+            this.containerElement.removeChild(lastElementChild);
+        }
+
         this.checkIndexs();
-    }
 
-    previousImage(): void {
-        this.currentIndex === 0 ? this.currentIndex = this.images.length - 1 : this.currentIndex--;
-
-        this.replaceClasses(this.currentImageElement, [["transition-none", "transition-opacity"], ["opacity-100", "opacity-0"]]);
-        this.checkIndexs();
+        this.insertImageElements();
     }
 
     onTransitionEnd(): void {
-        this.replaceClasses(this.currentImageElement, [["transition-opacity", "transition-none"], ["opacity-0", "opacity-100"]]);
-        this.replaceClasses(this.nextImageElement, [["transition-opacity", "transition-none"], ["opacity-100", "opacity-0"]]);
-
-        this.changeElementsImage();
+        this.containerElement.removeChild(this.containerElement.firstElementChild as HTMLElement);
     }
 
-    changeElementsImage(): void {
-        this.currentImageElement.src = this.images[this.currentIndex];
-        this.previousImageElement.src = this.images[this.previousIndex];
-        this.nextImageElement.src = this.images[this.nextIndex];
+    insertInitialImages(): void {
+        (this.containerElement.children[0] as HTMLImageElement).src = this.images[this.currentIndex];
+        (this.containerElement.children[1] as HTMLImageElement).src = this.images[this.previousIndex];
+        (this.containerElement.children[2] as HTMLImageElement).src = this.images[this.nextIndex];
     }
 
-    replaceClasses(element: HTMLElement, classes: Array<[string, string]>): void {
-        for(const className of classes) {
-            element.classList.replace(className[0], className[1]);
-        }
+    insertImageElements(): void {
+        const previousImg: HTMLImageElement = document.createElement("img");
+        previousImg.src = this.images[this.previousIndex];
+        this.containerElement.appendChild(previousImg);
+        previousImg.classList.add("opacity-0");
+
+        const nextImg: HTMLImageElement = document.createElement("img");
+        nextImg.src = this.images[this.nextIndex];
+        this.containerElement.appendChild(nextImg);
+        nextImg.classList.add("opacity-0");
+    }
+
+    changeElementOpacity(element: HTMLElement): void {
+        element.classList.replace("opacity-0", "opacity-100");
     }
 
     checkIndexs(): void {

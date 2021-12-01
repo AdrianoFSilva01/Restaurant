@@ -1,7 +1,7 @@
-div {
+.sliderContainer {
     @apply relative;
 
-    img {
-        @apply w-full h-full absolute object-cover duration-500;
+    :nth-child(n) {
+        @apply w-full h-full absolute object-cover transition-opacity duration-500;
     }
 }
