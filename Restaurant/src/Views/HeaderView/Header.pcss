@@ -1,23 +1,35 @@
-hr {
-    @apply border-black w-full;
-}
+.headerContainer {
+    @apply flex p-8 items-center;
 
-.hamburgerMenu {
-    @apply w-4 space-y-1;
-
-    :nth-child(n) {
-        @apply transition-all duration-500;
+    .navigationText {
+        @apply leading-3 text-sm flex-1;
     }
 
-    &:hover {
-        :nth-child(1) {
-            @apply transform -translate-y-0.5;
-        }
-        :nth-child(2) {
-            @apply opacity-0;
-        }
-        :nth-child(3) {
-            @apply transform translate-y-0.5;
+    .navigationImage {
+        @apply flex justify-center h-14 flex-1;
+    }
+
+    .navigationIcon {
+        @apply flex-1 flex justify-end;
+
+        .hamburgerMenu {
+            @apply w-4 space-y-1;
+
+            :nth-child(n) {
+                @apply border-black w-full transition-all duration-500;
+            }
+
+            &:hover {
+                :nth-child(1) {
+                    @apply transform -translate-y-0.5;
+                }
+                :nth-child(2) {
+                    @apply opacity-0;
+                }
+                :nth-child(3) {
+                    @apply transform translate-y-0.5;
+                }
+            }
         }
     }
 }

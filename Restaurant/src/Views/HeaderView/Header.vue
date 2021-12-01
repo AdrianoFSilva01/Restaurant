@@ -1,14 +1,14 @@
 <template>
-    <div class="flex p-8 items-center">
-        <div class="leading-3 text-sm flex-1">
+    <div class="headerContainer">
+        <div class="navigationText">
             Order
             <br />
             Now
         </div>
-        <div class="flex justify-center h-14 flex-1">
+        <div class="navigationImage">
             <img src="@/Assets/Images/logo.svg" />
         </div>
-        <div class="flex-1 flex justify-end">
+        <div class="navigationIcon">
             <div class="hamburgerMenu" @click="hamburgerMenuOnClick">
                 <hr />
                 <hr />
@@ -20,4 +20,4 @@
 
 <script lang="ts" src="./Header.ts" />
 
-<style lang="postcss" src="./Header.pcss" />
+<style scoped lang="postcss" src="./Header.pcss" />
