@@ -1,14 +1,13 @@
 import { Options, Vue } from "vue-class-component";
-import { ModelSync, Prop, Ref, Watch } from "vue-property-decorator";
+import { ModelSync, Ref, Watch } from "vue-property-decorator";
 
 @Options({
     emits: [
         "update:modelValue"
     ]
 })
-export default class Carousel<T> extends Vue {
+export default class Carousel extends Vue {
     @ModelSync("modelValue", "update:modelValue") currentIndex!: number;
-    @Prop() source!: T;
     @Ref() containerElement!: HTMLElement;
 
     containerElementWidth: number = 0;
@@ -21,7 +20,7 @@ export default class Carousel<T> extends Vue {
     animationClasses: Array<string> = [];
     moving: boolean = false;
 
-    @Watch(nameof((carousel: Carousel<T>) => carousel.currentIndex))
+    @Watch(nameof((carousel: Carousel) => carousel.currentIndex))
     onCurrentIndexChange(): void {
         if(!this.moving) {
             const position: number = this.currentIndex * -(this.childElementWidth + this.spaceBetweenChilds);

@@ -20,7 +20,7 @@ import { Inject, Ref, Watch } from "vue-property-decorator";
 })
 export default class MainView extends mixins(ArrowDirectionMixin) {
     @Ref() slider!: SliderTs;
-    @Ref() carousel!: CarouselTs<Category>;
+    @Ref() carousel!: CarouselTs;
     @Ref() inlineList!: InlineListTs;
     @Inject() axios!: Axios;
 
