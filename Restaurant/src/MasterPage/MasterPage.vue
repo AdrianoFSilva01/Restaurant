@@ -10,4 +10,4 @@
 
 <script lang="ts" src="./MasterPage.ts" />
 
-<style lang="postcss" src="./MasterPage.pcss" />
+<style scoped lang="postcss" src="./MasterPage.pcss" />

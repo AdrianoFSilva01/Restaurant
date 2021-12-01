@@ -1,10 +1,16 @@
-import { Vue } from "vue-class-component";
-import { Ref } from "vue-property-decorator";
+import { Options, Vue } from "vue-class-component";
+import { ModelSync, Prop, Ref, Watch } from "vue-property-decorator";
 
-export default class Carousel extends Vue {
+@Options({
+    emits: [
+        "update:modelValue"
+    ]
+})
+export default class Carousel<T> extends Vue {
+    @ModelSync("modelValue", "update:modelValue") currentIndex!: number;
+    @Prop() source!: T;
     @Ref() containerElement!: HTMLElement;
 
-    currentIndex: number = 0;
     containerElementWidth: number = 0;
     childElementWidth: number = 0;
     spaceBetweenChilds: number = 0;
@@ -13,6 +19,17 @@ export default class Carousel extends Vue {
     rightExtreme: number = 0;
     changeIndexPercentage: number = 40;
     animationClasses: Array<string> = [];
+    moving: boolean = false;
+
+    @Watch(nameof((carousel: Carousel<T>) => carousel.currentIndex))
+    onCurrentIndexChange(): void {
+        if(!this.moving) {
+            const position: number = this.currentIndex * -(this.childElementWidth + this.spaceBetweenChilds);
+            const translateX: number = position < this.rightExtreme || this.getElementPosition() < this.rightExtreme ? this.rightExtreme : position;
+
+            this.translateX = translateX;
+        }
+    }
 
     mounted(): void {
         this.containerElementWidth = this.getContainerElementWidth();
@@ -44,6 +61,7 @@ export default class Carousel extends Vue {
 
     onTouchMove(touchEvent: TouchEvent): void {
         touchEvent.preventDefault();
+        this.moving = true;
 
         const position: number = this.elementPosition + (touchEvent.touches[0].clientX - this.onTouchStartPosition)
         let translateX: number = position;
@@ -62,6 +80,8 @@ export default class Carousel extends Vue {
     }
 
     onTouchEnd(): void {
+        this.moving = false;
+
         this.containerElement.classList.add(...this.animationClasses);
 
         const position: number = this.currentIndex * -(this.childElementWidth + this.spaceBetweenChilds);
@@ -71,6 +91,12 @@ export default class Carousel extends Vue {
 
         document.ontouchmove = null;
         document.ontouchend = null;
+    }
+
+    translateThroughElement(element: HTMLElement): void {
+        this.containerElement.classList.add(...this.animationClasses);
+
+        this.currentIndex = Array.from(this.containerElement.children).indexOf(element);
     }
 
     getCurrentIndex(translateX: number): number {

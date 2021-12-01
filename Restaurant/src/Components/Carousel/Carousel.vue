@@ -1,6 +1,6 @@
 <template>
     <div ref="containerElement" @touchstart="onTouchStart" style="touch-action: none" >
-        <slot />
+        <slot :source="source" />
     </div>
 </template>
 
