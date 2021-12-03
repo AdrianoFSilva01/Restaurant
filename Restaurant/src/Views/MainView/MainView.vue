@@ -40,6 +40,26 @@
                 </Carousel>
             </template>
         </section>
+        <section class="restaurantInfoSection">
+            <img src="https://tul.imgix.net/content/article/sasso_1.jpg?auto=format,compress&w=520&h=390&fit=crop" />
+            <h1 class="text-3xl">
+                What stays,
+                <br />
+                is what counts.
+            </h1>
+            <div class="restaurantInfo">
+                <p>
+                    Five rooms offer the restaurant different volumes and atmospheres so that everyone may find a sprig from home.
+                </p>
+                <p>
+                    The architecture of the building created the interior spaces and their management has evolved over time.
+                </p>
+                <p>
+                    The soul of the house would not be without an attentive staff, a strong team attached to the spirit,
+                    which is still witness and relay of this hospitality that survives from generation to generation.
+                </p>
+            </div>
+        </section>
     </div>
 </template>
 

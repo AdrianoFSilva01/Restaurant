@@ -4,7 +4,7 @@
             <Overlay v-if="displayOverlay" :display="displayOverlay" @close-button-clicked="displayOverlay = false"  />
         </transition>
         <Header @hamburger-menu-clicked="displayOverlay = true" />
-        <MainView class="space-y-8" />
+        <MainView class="space-y-12" />
     </div>
 </template>
 
