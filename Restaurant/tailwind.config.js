@@ -4,6 +4,7 @@ const colors = require("tailwindcss/colors");
 const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette').default;
 
 module.exports = {
+    mode: 'jit',
     theme: {
         extend: {
             colors: {

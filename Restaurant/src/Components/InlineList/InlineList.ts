@@ -13,7 +13,7 @@ export default class InlineList extends Vue {
 
     onClick(touchEvent: TouchEvent): void {
         const containerElement: HTMLElement = this.$el as HTMLElement;
-        const targetElementParent: HTMLElement = (touchEvent.target as HTMLElement).parentElement as HTMLElement;
+        const targetElementParent: HTMLElement = (touchEvent.target as HTMLElement).parent();
         const index: number = Array.from(containerElement.children).indexOf(targetElementParent);
 
         if(index !== this.currentIndex) {
