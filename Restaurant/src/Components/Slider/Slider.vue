@@ -1,8 +1,8 @@
 <template>
-    <div class="sliderContainer" v-bind="$attrs" @transitionend="onTransitionEnd">
-        <img class="opacity-100" />
-        <img class="opacity-0" />
-        <img class="opacity-0" />
+    <div class="sliderContainer" v-bind="$attrs" @touchstart="onTouchStart" @transitionend="onTransitionEnd" >
+        <img class="opacity-100 transition-opacity duration-500" />
+        <img class="opacity-0 transition-opacity duration-500" />
+        <img class="opacity-0 transition-opacity duration-500" />
     </div>
 </template>
 
