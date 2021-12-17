@@ -1,5 +1,6 @@
 import "@/Assets/base.pcss";
 import directives from "@/Extensions/Directives/installDirectives";
+import "@/Extensions/Types/installTypes";
 import axios from 'axios';
 import { App, createApp } from 'vue';
 import MasterPage from './MasterPage/MasterPage.vue';

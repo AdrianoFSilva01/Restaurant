@@ -3,7 +3,10 @@ import { ModelSync, Ref, Watch } from "vue-property-decorator";
 
 @Options({
     emits: [
-        "update:modelValue"
+        "update:modelValue",
+        "touchstart",
+        "touchmove",
+        "touchend"
     ]
 })
 export default class Carousel extends Vue {
@@ -19,36 +22,40 @@ export default class Carousel extends Vue {
     changeIndexPercentage: number = 40;
     animationClasses: Array<string> = [];
     moving: boolean = false;
+    getElementPositionWhenStopped: boolean = false;
 
     @Watch(nameof((carousel: Carousel) => carousel.currentIndex))
     onCurrentIndexChange(): void {
         if(!this.moving) {
-            const position: number = this.currentIndex * -(this.childElementWidth + this.spaceBetweenChilds);
-            const translateX: number = position < this.rightExtreme || this.getElementPosition() < this.rightExtreme ? this.rightExtreme : position;
-
-            this.translateX = translateX;
+            this.translateThroughIndex();
         }
     }
 
     mounted(): void {
+        const lastChild: HTMLElement = this.containerElement.lastElement();
+        this.childElementWidth = lastChild.getWidth();
+
+        this.spaceBetweenChilds = lastChild.getMarginRight() + lastChild.getMarginLeft();
+
         this.containerElementWidth = this.getContainerElementWidth();
 
-        const lastChild: CSSStyleDeclaration = getComputedStyle(this.containerElement.lastElementChild as Element);
-        this.childElementWidth = parseFloat(lastChild.width);
-        this.spaceBetweenChilds = parseInt(lastChild.marginRight) + parseInt(lastChild.marginLeft);
+        const elementLeftPosition: number = this.containerElement.getLeftPosition() - this.containerElement.getMarginLeft();
+        const elementRightPosition: number = window.innerWidth - elementLeftPosition - this.containerElement.getWidth();
 
         const windowBiggerThanContainer: boolean = Math.abs(this.containerElementWidth) < window.innerWidth;
-        this.rightExtreme = windowBiggerThanContainer ? 0 : window.innerWidth + this.containerElementWidth;
+        this.rightExtreme = windowBiggerThanContainer
+            ? 0
+            : (window.innerWidth + this.containerElementWidth) - (elementRightPosition + elementLeftPosition);
 
         this.animationClasses = this.getAnimationClasses();
     }
 
-    set translateX(value: number) {
-        this.containerElement.style.transform = `translateX(${value}px)`;
-    }
-
     onTouchStart(touchEvent: TouchEvent): void {
-        touchEvent.preventDefault();
+        if(touchEvent.cancelable) {
+            touchEvent.preventDefault();
+        }
+
+        this.moving = true;
 
         this.stopTransition();
 
@@ -56,11 +63,12 @@ export default class Carousel extends Vue {
 
         document.ontouchmove = this.onTouchMove;
         document.ontouchend = this.onTouchEnd;
+
+        this.$emit("touchstart");
     }
 
     onTouchMove(touchEvent: TouchEvent): void {
         touchEvent.preventDefault();
-        this.moving = true;
 
         const position: number = this.elementPosition + (touchEvent.touches[0].clientX - this.onTouchStartPosition)
         let translateX: number = position;
@@ -71,11 +79,13 @@ export default class Carousel extends Vue {
             translateX = this.rightExtreme + ((position - this.rightExtreme) / 50);
         }
 
-        this.translateX = translateX;
+        this.translateX(translateX);
 
         this.currentIndex = this.getCurrentIndex(translateX);
 
-        document.ontouchend = this.onTouchEnd;
+        const percentageMoved: number = (position / (this.containerElementWidth + this.childElementWidth)) * 100;
+
+        this.$emit("touchmove", percentageMoved);
     }
 
     onTouchEnd(): void {
@@ -83,10 +93,9 @@ export default class Carousel extends Vue {
 
         this.containerElement.classList.add(...this.animationClasses);
 
-        const position: number = this.currentIndex * -(this.childElementWidth + this.spaceBetweenChilds);
-        const translateX: number = position < this.rightExtreme || this.getElementPosition() < this.rightExtreme ? this.rightExtreme : position;
+        this.translateThroughIndex();
 
-        this.translateX = translateX;
+        this.$emit("touchend");
 
         document.ontouchmove = null;
         document.ontouchend = null;
@@ -96,6 +105,55 @@ export default class Carousel extends Vue {
         this.containerElement.classList.add(...this.animationClasses);
 
         this.currentIndex = Array.from(this.containerElement.children).indexOf(element);
+    }
+
+    translateThroughIndex(): void {
+        const position: number = this.currentIndex * -(this.childElementWidth + this.spaceBetweenChilds);
+        const translateX: number = position < this.rightExtreme || this.getElementPosition() < this.rightExtreme
+            ? this.rightExtreme
+            : position;
+        this.translateX(translateX);
+    }
+
+    translateThroughPositionPercentage(positionPercentage: number, minIndex: number, maxIndex: number): void {
+        this.moving = true;
+
+        if(!this.getElementPositionWhenStopped) {
+            this.stopTransition();
+            this.getElementPositionWhenStopped = true;
+        }
+
+        const position: number = ((positionPercentage / 100) * this.containerElementWidth) + this.elementPosition;
+        let translateX: number = position;
+
+        this.containerElement.classList.remove(...this.animationClasses);
+
+        if(translateX <= -(maxIndex * this.childElementWidth) && maxIndex !== 0) {
+            translateX = -(maxIndex * this.childElementWidth);
+        } else if(translateX >= -(minIndex * this.childElementWidth) && minIndex !== this.containerElement.children.length - 1) {
+            translateX = -(minIndex * this.childElementWidth);
+        } else if(position > 0) {
+            this.containerElement.classList.add(...this.animationClasses);
+            translateX = position > (this.changeIndexPercentage / 100) * this.childElementWidth
+                ? this.rightExtreme
+                : 0;
+        } else if(position < this.rightExtreme) {
+            this.containerElement.classList.add(...this.animationClasses);
+            translateX = position < this.rightExtreme - ((this.changeIndexPercentage / 100) * this.childElementWidth)
+                ? 0
+                : this.rightExtreme;
+        }
+
+        this.translateX(translateX);
+    }
+
+    alignTranslate(): void {
+        this.moving = false;
+        this.getElementPositionWhenStopped = false;
+
+        this.containerElement.classList.add(...this.animationClasses);
+
+        this.translateThroughIndex();
     }
 
     getCurrentIndex(translateX: number): number {
@@ -112,27 +170,31 @@ export default class Carousel extends Vue {
     }
 
     getContainerElementWidth(): number {
-        const marginLeft: number = parseInt(window.getComputedStyle(this.containerElement).marginLeft);
-        const marginRight: number = parseInt(window.getComputedStyle(this.containerElement).marginRight);
-        return -this.containerElement.getBoundingClientRect().width - (marginLeft + marginRight);
+        const width: number = ([...this.containerElement.children] as Array<HTMLElement>)
+            .map((el: HTMLElement) => el.offsetWidth)
+            .reduce((total: number, value: number) => total + value, 0);
+        return -(width + (this.spaceBetweenChilds * (this.containerElement.children.length - 1)) + (this.containerElement.getMarginRight() + this.containerElement.getMarginLeft()));
     }
 
     getAnimationClasses(): Array<string> {
         const animationClasses: Array<string> = [];
-
         for(const className of this.containerElement.classList) {
             const classes: string | undefined = className.match("transition")?.input || className.match("duration")?.input;
             if(classes) {
                 animationClasses.push(classes);
             }
         }
-
         return animationClasses;
     }
 
     stopTransition(): void {
+        this.moving = true;
         this.elementPosition = this.getElementPosition();
-        this.translateX = this.elementPosition;
+        this.translateX(this.elementPosition);
         this.containerElement.classList.remove(...this.animationClasses);
+    }
+
+    translateX(value: number): void {
+        this.containerElement.style.transform = `translateX(${value}px)`;
     }
 }

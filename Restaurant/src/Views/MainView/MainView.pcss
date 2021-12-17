@@ -1,4 +1,4 @@
-.sliderSection {
+.restaurant {
     @apply space-y-4;
 
     .slider {
@@ -14,8 +14,8 @@
     }
 }
 
-.carouselSection {
-    @apply overflow-hidden space-y-4;
+.weeklyFood {
+    @apply space-y-4;
 
     .carouselBackground {
         @apply absolute top-0 left-0 object-cover w-full h-full;
@@ -23,7 +23,7 @@
     }
 
     .carouselItem {
-        @apply relative w-64 h-80 flex p-4 text-white flex-col flex-1;
+        @apply relative w-64 h-80 flex p-4 text-white flex-col flex-shrink-0;
 
         &:before {
             @apply absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-black to-transparent opacity-75;
@@ -39,10 +39,28 @@
     }
 }
 
-.restaurantInfoSection {
+.restaurantInfo {
     @apply mx-8 space-y-4;
 
-    .restaurantInfo {
+    .restaurantInfoText {
         @apply space-y-2 text-justify text-sm opacity-80;
+    }
+}
+
+.desserts {
+    .slider {
+        @apply w-full h-72 m-auto;
+    }
+
+    .carouselItem {
+        @apply w-full flex-shrink-0 text-center;
+    }
+
+    .leftArrow {
+        @apply w-10 h-6 ml-4;
+    }
+
+    .rightArrow {
+        @apply w-10 h-6 mr-4;
     }
 }

@@ -20,7 +20,9 @@ import { Inject, Ref, Watch } from "vue-property-decorator";
 })
 export default class MainView extends mixins(ArrowDirectionMixin) {
     @Ref() slider!: SliderTs;
+    @Ref() dessertsSlider!: SliderTs;
     @Ref() carousel!: CarouselTs;
+    @Ref() dessertsCarousel!: CarouselTs;
     @Ref() inlineList!: InlineListTs;
     @Inject() axios!: Axios;
 
@@ -32,8 +34,24 @@ export default class MainView extends mixins(ArrowDirectionMixin) {
         "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80",
         "https://cdn.pixabay.com/photo/2021/08/25/20/42/field-6574455__480.jpg"
     ];
+    sliderIndex: number = 0;
 
     carouselIndex: number = 0;
+    dessertsCarouselIndex: number = 0;
+
+    get catalogName(): Array<string> {
+        if(this.Categories) {
+            return this.Categories.flatMap((c: Category) => c.catalogs).flatMap((c: Catalog) => c.name);
+        }
+        return [];
+    }
+
+    get catalogImage(): Array<string> {
+        if(this.Categories) {
+            return this.Categories.flatMap((c: Category) => c.catalogs).flatMap((c: Catalog) => c.imageUrl);
+        }
+        return [];
+    }
 
     @Watch(nameof((mainView: MainView) => mainView.carouselIndex))
     onCarouselIndexChange(): void {
@@ -51,8 +69,16 @@ export default class MainView extends mixins(ArrowDirectionMixin) {
             });
     }
 
-    onSliderButtonClick(nextButton: boolean): void {
-        this.slider.changeImage(nextButton);
+    onSliderButtonClick(sliderIndex: number): void {
+        let index: number = sliderIndex;
+
+        if(sliderIndex < 0) {
+            index = this.sliderImages.length - 1;
+        } else if(sliderIndex > this.sliderImages.length - 1) {
+            index = 0;
+        }
+
+        this.sliderIndex = index;
     }
 
     InlineListChangedIndex(index: number): void {
@@ -63,9 +89,50 @@ export default class MainView extends mixins(ArrowDirectionMixin) {
     changeInlineListIndex(): void {
         const carouselElementOfIndex: HTMLElement = document.getElementsByClassName("carouselItem")[this.carouselIndex] as HTMLElement;
         const idOfElement: number = Number(carouselElementOfIndex.id.split("carouselCategory")[1]);
+
         if(this.inlineList.currentIndex !== idOfElement) {
             this.inlineList.currentIndex = idOfElement;
         }
+    }
+
+    onDessertButtonClick(dessertsCarouselIndex: number): void {
+        let index: number = dessertsCarouselIndex;
+
+        if(dessertsCarouselIndex < 0) {
+            index = this.catalogName.length - 1;
+        } else if(dessertsCarouselIndex > this.catalogName.length - 1) {
+            index = 0;
+        }
+
+        this.dessertsCarouselIndex = index;
+    }
+
+    sliderTouchStart(): void {
+        this.dessertsCarousel.stopTransition();
+    }
+
+    sliderTouchMoving(percentage: number, minIndex: number, maxIndex: number): void {
+        this.dessertsCarousel.translateThroughPositionPercentage(percentage / this.catalogName.length, minIndex, maxIndex);
+    }
+
+    sliderTouchEnded(): void {
+        this.dessertsCarousel.alignTranslate();
+    }
+
+    dessertsCarouselTouchStart(): void {
+        this.dessertsSlider.stopTransition();
+    }
+
+    dessertsCarouselTouchMoving(percentage: number ): void {
+        this.dessertsSlider.changeImageThroughPercentage(percentage);
+    }
+
+    dessertsCarouselTouchEnded(): void {
+        this.dessertsSlider.adjustElementsThroughIndex();
+    }
+
+    potato(number: number): number {
+        return number;
     }
 }
 
