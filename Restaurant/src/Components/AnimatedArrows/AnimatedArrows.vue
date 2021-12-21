@@ -1,8 +1,8 @@
 <template>
     <button class="arrowButton" @click="onClick" @transitionend="onTransitionEnd">
-        <hr class="sideLines" />
-        <hr class="sideLines" />
-        <hr class="middleLine" />
+        <hr class="sideLines" :class="childClass" />
+        <hr class="sideLines" :class="childClass" />
+        <hr class="middleLine" :class="childClass" />
     </button>
 </template>
 

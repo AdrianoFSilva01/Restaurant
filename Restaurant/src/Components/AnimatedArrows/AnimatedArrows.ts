@@ -4,6 +4,7 @@ import { ArrowDirection } from "./ArrowDirections";
 
 export default class AnimatedArrows extends Vue {
     @Prop() direction!: ArrowDirection;
+    @Prop({default: "bg-black"}) childClass!: string;
 
     mounted(): void {
         const classes: Array<string> = this.direction.split(" ");
