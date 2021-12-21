@@ -19,13 +19,17 @@
         <hr class="delayedTransition" />
         <div class="contactList">
             <ul class="delayedTransition">
-                <img src="@/Assets/Images/Phone.svg"/>
+                <svg viewBox="0 0 100 100">
+                    <use href="@/Assets/Images/Phone.svg#phone" />
+                </svg>
                 <p>
                     931 662 001
                 </p>
             </ul>
             <ul class="delayedTransition">
-                <img src="@/Assets/Images/Mail.svg"/>
+                <svg viewBox="0 0 100 100">
+                    <use href="@/Assets/Images/Mail.svg#mail" />
+                </svg>
                 <p>
                     info@madeira.pt
                 </p>
@@ -34,17 +38,17 @@
         <hr class="delayedTransition" />
         <div class="socialList">
             <ul class="delayedTransition">
-                <div>
-                    <img src="@/Assets/Images/Facebook.svg" />
-                </div>
+                <svg viewBox="0 0 100 100">
+                    <use href="@/Assets/Images/Facebook.svg#facebook" />
+                </svg>
                 <p>
                     Facebook
                 </p>
             </ul>
             <ul class="delayedTransition">
-                <div>
-                    <img src="@/Assets/Images/Instagram.svg" />
-                </div>
+                <svg viewBox="0 0 100 100">
+                    <use href="@/Assets/Images/Instagram.svg#instagram" />
+                </svg>
                 <p>
                     Instagram
                 </p>
