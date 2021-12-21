@@ -4,7 +4,6 @@ const colors = require("tailwindcss/colors");
 const flattenColorPalette = require('tailwindcss/lib/util/flattenColorPalette').default;
 
 module.exports = {
-    mode: 'jit',
     theme: {
         extend: {
             colors: {
@@ -24,7 +23,8 @@ module.exports = {
     variants: {
         extend: {
             width: ['focus'],
-            backgroundColor: ['active']
+            backgroundColor: ['active'],
+            input: ['checked']
         }
     }
 };
