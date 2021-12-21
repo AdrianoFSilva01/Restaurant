@@ -1,0 +1,42 @@
+.footer {
+    @apply p-8 space-y-10 bg-gray-700 text-white;
+
+    .form {
+        @apply space-y-6;
+
+        .input {
+            @apply w-full bg-transparent border-b border-white border-opacity-30 focus:border-opacity-100 placeholder-white transition-all duration-500 outline-none;
+        }
+
+        .privacyPolicy {
+            @apply relative flex items-center space-x-2;
+
+            &:before {
+                @apply absolute -left-0.5 w-3.5 h-3.5 border border-white;
+                content: "";
+            }
+
+            .input {
+                @apply appearance-none w-2.5 h-2.5 transform bg-white scale-0 flex-shrink-0 transition-all duration-500;
+
+                &:checked {
+                    @apply transform scale-100;
+                }
+            }
+        }
+
+        .button {
+            @apply w-full p-2 text-sm border border-white;
+        }
+    }
+
+    .socialList,
+    .contactList {
+        @apply space-y-4 text-sm;
+
+        .socialItem,
+        .contactItem {
+            @apply flex space-x-4 items-center;
+        }
+    }
+}
