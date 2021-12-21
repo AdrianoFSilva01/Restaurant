@@ -5,6 +5,7 @@
         </transition>
         <Header @hamburger-menu-clicked="displayOverlay = true" />
         <MainView class="space-y-12" />
+        <Footer class="mt-8" />
     </div>
 </template>
 
