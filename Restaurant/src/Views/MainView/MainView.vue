@@ -72,7 +72,6 @@
                             @click="onDessertButtonClick(dessertsCarouselIndex - 1)"
                             :direction="ArrowDirection.left"
                         />
-
                     </div>
                     <div class="w-full overflow-hidden">
                         <Carousel ref="dessertsCarousel" class="flex transition-transform duration-500 flex-shrink w-full" v-model="dessertsCarouselIndex" @touchstart="dessertsCarouselTouchStart" @touchmove="dessertsCarouselTouchMoving" @touchend="dessertsCarouselTouchEnded">

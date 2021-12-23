@@ -1,11 +1,11 @@
 <template>
-    <div id="app" :class="{ 'w-screen h-screen overflow-y-hidden' : displayOverlay }">
+    <div id="app">
         <transition name="fade">
             <Overlay v-if="displayOverlay" :display="displayOverlay" @close-button-clicked="displayOverlay = false"  />
         </transition>
         <Header @hamburger-menu-clicked="displayOverlay = true" />
         <MainView class="space-y-12" />
-        <Footer class="mt-8" />
+        <Footer />
     </div>
 </template>
 
