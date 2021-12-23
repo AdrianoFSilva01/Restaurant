@@ -5,7 +5,7 @@
             <br />
             Now
         </div>
-        <div class="navigationImage">
+        <div ref="imageElement" class="navigationImage">
             <img src="@/Assets/Images/logo.svg" />
         </div>
         <div class="navigationIcon">
