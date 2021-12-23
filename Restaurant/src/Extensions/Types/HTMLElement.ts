@@ -9,8 +9,11 @@ declare global {
         nextSiblingElement(): HTMLElement;
         getLeftPosition(): number;
         getWidth(): number;
+        getHeight(): number;
         getMarginLeft(): number;
         getMarginRight(): number;
+        getPaddingTop(): number;
+        getTransition(): string;
     }
 }
 
@@ -42,10 +45,22 @@ HTMLElement.prototype.getWidth = function getWidth(): number {
     return this.getBoundingClientRect().width;
 }
 
+HTMLElement.prototype.getHeight = function getHeight(): number {
+    return this.getBoundingClientRect().height;
+}
+
 HTMLElement.prototype.getMarginLeft = function getMarginLeft(): number {
     return parseInt(window.getComputedStyle(this).marginLeft);
 }
 
 HTMLElement.prototype.getMarginRight = function getMarginRight(): number {
     return parseInt(window.getComputedStyle(this).marginRight);
+}
+
+HTMLElement.prototype.getPaddingTop = function getPaddingTop(): number {
+    return parseInt(window.getComputedStyle(this).paddingTop);
+}
+
+HTMLElement.prototype.getTransition = function getTransition(): string {
+    return window.getComputedStyle(this).transition;
 }
