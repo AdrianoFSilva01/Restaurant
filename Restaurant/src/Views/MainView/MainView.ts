@@ -27,12 +27,14 @@ export default class MainView extends mixins(ArrowDirectionMixin) {
     @Inject() axios!: Axios;
 
     Categories: Array<Category> | null = null;
+    DessertCatalogs: Array<Category> | null = null;
     CategoriesName: Array<string> = [];
 
     sliderImages: Array<string> = [
-        "https://tul.imgix.net/content/article/sasso_1.jpg?auto=format,compress&w=520&h=390&fit=crop",
-        "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Mnx8fGVufDB8fHx8&w=1000&q=80",
-        "https://cdn.pixabay.com/photo/2021/08/25/20/42/field-6574455__480.jpg"
+        "https://media.architecturaldigest.com/photos/5cf690979a329c9785220c5b/3:2/w_2798,h_1865,c_limit/(c)%20Kevin%20Scott%20-%20Canlis%20(5).jpg",
+        "https://free4kwallpapers.com/uploads/originals/2015/07/25/restaurants-lighting-design.jpg",
+        "https://cdnb.artstation.com/p/assets/images/images/016/385/443/4k/pasquale-scionti-restaurant-lumion-00-00-24-06.jpg?1551959913",
+        "https://images.squarespace-cdn.com/content/v1/55488e38e4b0f2df4ca91881/1463050370917-JG9JJGN5LGTDDJIRKVM3/GALAXY_BAR_TERRACE_credit+hilton.jpg?format=2500w"
     ];
     sliderIndex: number = 0;
 
@@ -40,15 +42,15 @@ export default class MainView extends mixins(ArrowDirectionMixin) {
     dessertsCarouselIndex: number = 0;
 
     get catalogName(): Array<string> {
-        if(this.Categories) {
-            return this.Categories.flatMap((c: Category) => c.catalogs).flatMap((c: Catalog) => c.name);
+        if(this.DessertCatalogs) {
+            return this.DessertCatalogs.flatMap((c: Category) => c.name);
         }
         return [];
     }
 
     get catalogImage(): Array<string> {
-        if(this.Categories) {
-            return this.Categories.flatMap((c: Category) => c.catalogs).flatMap((c: Catalog) => c.imageUrl);
+        if(this.DessertCatalogs) {
+            return this.DessertCatalogs.flatMap((c: Category) => c.imageUrl);
         }
         return [];
     }
@@ -66,6 +68,11 @@ export default class MainView extends mixins(ArrowDirectionMixin) {
                 for(const category of this.Categories) {
                     this.CategoriesName.push(category.name);
                 }
+            });
+
+        this.axios.get<Array<Category>>("Category/5/detail")
+            .then((response: AxiosResponse<Array<Category>>) => {
+                this.DessertCatalogs = response.data;
             });
     }
 
@@ -107,27 +114,27 @@ export default class MainView extends mixins(ArrowDirectionMixin) {
         this.dessertsCarouselIndex = index;
     }
 
-    sliderTouchStart(): void {
+    sliderInteractionStart(): void {
         this.dessertsCarousel.stopTransition();
     }
 
-    sliderTouchMoving(percentage: number, minIndex: number, maxIndex: number): void {
+    sliderInteractionMoving(percentage: number, minIndex: number, maxIndex: number): void {
         this.dessertsCarousel.translateThroughPositionPercentage(percentage / this.catalogName.length, minIndex, maxIndex);
     }
 
-    sliderTouchEnded(): void {
+    sliderInteractionEnded(): void {
         this.dessertsCarousel.alignTranslate();
     }
 
-    dessertsCarouselTouchStart(): void {
+    dessertsCarouselInteractionStart(): void {
         this.dessertsSlider.stopTransition();
     }
 
-    dessertsCarouselTouchMoving(percentage: number ): void {
+    dessertsCarouselInteractionMoving(percentage: number ): void {
         this.dessertsSlider.changeImageThroughPercentage(percentage);
     }
 
-    dessertsCarouselTouchEnded(): void {
+    dessertsCarouselInteractionEnded(): void {
         this.dessertsSlider.adjustElementsThroughIndex();
     }
 
