@@ -1,0 +1,52 @@
+@screen lg {
+    main {
+        > :nth-child(n) {
+            @apply px-12;
+        }
+    }
+
+    .restaurant {
+        @apply space-y-0;
+
+        .slider {
+            @apply w-full h-70vh;
+        }
+
+        .arrowsContainer {
+            @apply absolute mx-0 top-0 left-0 w-full h-full items-center;
+            padding: inherit;
+
+            .animatedArrows {
+                &:first-child {
+                    @apply transform -translate-x-1/2;
+                }
+
+                &:last-child {
+                    @apply transform translate-x-1/2 -scale-x-100;
+                }
+            }
+        }
+    }
+
+    .restaurantInfo {
+        @apply flex space-x-16 justify-center space-y-0;
+
+        .restaurantInfoText {
+            @apply text-base;
+        }
+    }
+
+    .desserts {
+        .slider {
+            @apply h-70vh;
+        }
+
+        .leftArrow {
+            @apply ml-0;
+        }
+
+        .rightArrow {
+            @apply mr-0;
+        }
+    }
+}
