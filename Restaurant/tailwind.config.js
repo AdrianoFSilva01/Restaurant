@@ -12,6 +12,9 @@ module.exports = {
             },
             scale: {
                 '-100' : '-1'
+            },
+            height: {
+                '70vh' : '70vh'
             }
         },
         fontFamily: {
@@ -24,7 +27,8 @@ module.exports = {
         extend: {
             width: ['focus'],
             backgroundColor: ['active'],
-            input: ['checked']
+            input: ['checked'],
+            borderWidth: ['last']
         }
     }
 };
