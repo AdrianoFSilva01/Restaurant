@@ -1,3 +1,13 @@
+.mainView {
+    > :nth-child(n) {
+        @apply my-12;
+    }
+
+    :first-child {
+        @apply mt-0;
+    }
+}
+
 .fade-enter-active,
 .fade-leave-active {
     @apply transition-opacity duration-1000;
