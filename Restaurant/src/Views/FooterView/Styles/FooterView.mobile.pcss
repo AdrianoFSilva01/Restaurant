@@ -4,6 +4,10 @@
     .form {
         @apply space-y-6;
 
+        .nameInputs {
+            @apply space-y-6;
+        }
+
         .input {
             @apply w-full bg-transparent border-b border-white border-opacity-30 focus:border-opacity-100 placeholder-white transition-all duration-500 outline-none;
         }
@@ -30,13 +34,15 @@
         }
     }
 
-    .socialList,
-    .contactList {
-        @apply space-y-4 text-sm;
+    .contacts {
+        @apply w-full;
 
-        .socialItem,
-        .contactItem {
-            @apply flex space-x-4 items-center;
+        .contactList {
+            @apply flex flex-wrap text-sm gap-y-4;
+
+            .contactItem {
+                @apply flex space-x-4 w-1/2;
+            }
         }
     }
 }
