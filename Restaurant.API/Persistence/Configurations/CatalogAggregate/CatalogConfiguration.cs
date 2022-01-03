@@ -13,7 +13,7 @@ public class CatalogConfiguration : IEntityTypeConfiguration<Catalog>
 
         entity.Property(i => i.ImageUrl)
               .IsRequired()
-              .HasMaxLength(100)
+              .HasMaxLength(300)
               .IsUnicode(false);
 
         entity.Property(i => i.HeroImageUrl)

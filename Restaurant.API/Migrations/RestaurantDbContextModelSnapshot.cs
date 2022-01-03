@@ -56,9 +56,9 @@ namespace Restaurant.API.Migrations
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasMaxLength(100)
+                        .HasMaxLength(300)
                         .IsUnicode(false)
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("varchar(300)");
 
                     b.Property<string>("Name")
                         .IsRequired()

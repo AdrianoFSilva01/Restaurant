@@ -215,8 +215,12 @@ public class RestaurantInitializer
 
         common = new Dictionary<int, Catalog>()
             {
-                { id++, new Catalog { Name = "Brownies de Manteiga de Amendoim", ImageUrl = "http://i.imgur.com/3jSMmtK.png" } },
-                { id++, new Catalog { Name = "Cupcakes", ImageUrl = "http://i.imgur.com/RsCIy6t.png" } }
+                { id++, new Catalog { Name = "Brownies de Manteiga de Amendoim", ImageUrl = "https://media-manager.noticiasaominuto.com/1920/1589459543/naom_5ebd3a10c1d36.jpg?crop_params=eyJsYW5kc2NhcGUiOnsiY3JvcFdpZHRoIjoyNTYwLCJjcm9wSGVpZ2h0IjoxNDQwLCJjcm9wWCI6MCwiY3JvcFkiOjQ4fSwicG9ydHJhaXQiOnsiY3JvcFdpZHRoIjo5NTcsImNyb3BIZWlnaHQiOjE3MDIsImNyb3BYIjo1NzAsImNyb3BZIjo0fX0=" } },
+                { id++, new Catalog { Name = "Cupcakes", ImageUrl = "https://wallpaperaccess.com/full/264881.jpg" } },
+                { id++, new Catalog { Name = "Mouse de Chocolate", ImageUrl = "https://www.10wallpaper.com/wallpaper/2560x1600/1502/chocolate_mousse-High_Quality_HD_Wallpaper_2560x1600.jpg"} },
+                { id++, new Catalog { Name = "Panna Cotta", ImageUrl= "https://i.pinimg.com/originals/cf/ac/0c/cfac0cee8d9402661476d0500e3948c2.jpg"} },
+                { id++, new Catalog { Name = "Tarde de Natas", ImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2020/03/Tarte-de-natas-CHLM-4-scaled.jpg"} },
+                { id++, new Catalog { Name = "Bolo de Cenoura", ImageUrl = "https://s.zst.com.br/cms-assets/2021/07/bolo-de-cenoura-de-liquidificador.jpg"} }
 
             };
         Categories[5].Catalogs = common.Values.ToList();
