@@ -1,0 +1,36 @@
+@screen lg {
+    .overlay {
+        @apply grid grid-rows-2 grid-cols-3;
+
+        &:before {
+            @apply absolute col-start-2 top-0 right-0 w-full h-full bg-cover bg-center;
+            background-image: url(https://foodetective-production.s3.amazonaws.com/uploads/picture/photo/7c2ad1c1-34f8-4eef-ac9c-2b0a60c8903d/photo.jpeg);
+            z-index: -2;
+            content: "";
+        }
+
+        &:after {
+            @apply absolute col-start-2 bottom-0 left-0 w-full h-2/6 bg-gradient-to-b from-transparent to-black opacity-75;
+            z-index: -1;
+            content: "";
+        }
+
+        .contactInfo {
+            @apply row-span-2 col-span-2 flex justify-evenly items-end;
+
+            .contactList {
+                li {
+                    @apply p-2;
+
+                    &:not(:nth-child(2)):not(:last-child) {
+                        @apply p-2;
+                    }
+                }
+            }
+        }
+
+        .termsPrivacy {
+            @apply flex flex-col justify-end;
+        }
+    }
+}
