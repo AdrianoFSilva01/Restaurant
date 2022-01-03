@@ -11,4 +11,5 @@ export default class FooterView extends mixins(ArrowDirectionMixin) {
     scrollToTop(): void {
         document.documentElement.scrollTop = 0;
     }
+
 }
