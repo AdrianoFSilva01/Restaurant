@@ -4,9 +4,9 @@ import { ModelSync, Prop, Watch } from "vue-property-decorator";
 @Options({
     emits: [
         "update:modelValue",
-        "touchstart",
-        "touchmove",
-        "touchend"
+        "interactionstart",
+        "interactionmove",
+        "interactionend"
     ]
 })
 export default class Slider extends Vue {
@@ -17,7 +17,7 @@ export default class Slider extends Vue {
     containerMaxChildrenLenght: number = 0;
     previousIndex: number = 0;
     nextIndex: number = 1;
-    onTouchStartPosition: number = 0;
+    onInteractionStartPosition: number = 0;
     changeIndexPercentage: number = 40;
     changeOpacityPercentage: number = 10;
     moving: boolean = false;
@@ -52,25 +52,41 @@ export default class Slider extends Vue {
         this.insertInitialImages();
     }
 
-    onTouchStart(touchEvent: TouchEvent): void {
-        if(touchEvent.cancelable) {
-            touchEvent.preventDefault();
+    onInteractionStart(event: Event): void {
+        if(event.cancelable) {
+            event.preventDefault();
         }
 
         this.moving = true;
 
         this.stopTransition();
 
-        this.onTouchStartPosition = touchEvent.touches[0].clientX;
+        if(event instanceof TouchEvent) {
+            this.onInteractionStartPosition = event.touches[0].clientX;
 
-        document.ontouchmove = this.onTouchMove;
-        document.ontouchend = this.onTouchEnd;
+            document.ontouchmove = this.onInteractionMove;
+            document.ontouchend = this.onInteractionEnd;
+        } else if(event instanceof MouseEvent) {
+            this.onInteractionStartPosition = event.clientX;
 
-        this.$emit("touchstart");
+            document.onmousemove = this.onInteractionMove;
+            document.onmouseup = this.onInteractionEnd;
+        }
+
+        this.$emit("interactionstart");
     }
 
-    onTouchMove(touchEvent: TouchEvent): void {
-        const opacity: number = ((this.onTouchStartPosition - touchEvent.touches[0].clientX) / (this.containerElement.getWidth() / 2)) + this.elementOpacity;
+    onInteractionMove(event: Event): void {
+        let interactionPosition: number = 0;
+
+        if(event instanceof TouchEvent) {
+            interactionPosition = event.touches[0].clientX;
+        } else if(event instanceof MouseEvent) {
+            interactionPosition = event.clientX;
+        }
+
+        const position: number = (this.onInteractionStartPosition - interactionPosition) / (this.containerElement.getWidth() / 2);
+        const opacity: number = position + this.elementOpacity;
         const changeOpacityValue: number = this.changeOpacityPercentage / 100
         let previousElement: HTMLElement = this.containerElement.lastElement().previousSiblingElement();
         let nextElement: HTMLElement = this.containerElement.lastElement();
@@ -103,10 +119,10 @@ export default class Slider extends Vue {
             }
         }
 
-        this.$emit("touchmove", ((this.onTouchStartPosition - touchEvent.touches[0].clientX) / (this.containerElement.getWidth() / 2)) * 100, this.previousIndex, this.nextIndex);
+        this.$emit("interactionmove", position * 100, this.previousIndex, this.nextIndex);
     }
 
-    onTouchEnd(): void {
+    onInteractionEnd(): void {
         this.moving = false;
 
         if(this.containerElement.children.length > 3) {
@@ -127,10 +143,12 @@ export default class Slider extends Vue {
             this.changeElementOpacity(lastElementChild.previousSiblingElement(), 0);
         }
 
-        this.$emit("touchend");
+        this.$emit("interactionend");
 
         document.ontouchmove = null;
         document.ontouchend = null;
+        document.onmousemove = null;
+        document.onmouseup = null;
     }
 
     changeImageThroughPercentage(percentage: number): void {
