@@ -1,22 +1,24 @@
 import { Options, Vue } from "vue-class-component";
-import { ModelSync, Ref, Watch } from "vue-property-decorator";
+import { ModelSync, Prop, Ref, Watch } from "vue-property-decorator";
 
 @Options({
     emits: [
         "update:modelValue",
-        "touchstart",
-        "touchmove",
-        "touchend"
+        "interactionstart",
+        "interactionmove",
+        "interactionend"
     ]
 })
 export default class Carousel extends Vue {
     @ModelSync("modelValue", "update:modelValue") currentIndex!: number;
     @Ref() containerElement!: HTMLElement;
+    @Prop({default: false}) centerSelected!: boolean;
 
+    inicialPosition: number = 0;
     containerElementWidth: number = 0;
     childElementWidth: number = 0;
     spaceBetweenChilds: number = 0;
-    onTouchStartPosition: number = 0;
+    onInteractionStartPosition: number = 0;
     elementPosition: number = 0;
     rightExtreme: number = 0;
     changeIndexPercentage: number = 40;
@@ -35,6 +37,11 @@ export default class Carousel extends Vue {
         const lastChild: HTMLElement = this.containerElement.lastElement();
         this.childElementWidth = lastChild.getWidth();
 
+        if(this.centerSelected && this.containerElement.parentElement) {
+            this.inicialPosition = (this.containerElement.parentElement.getWidth() / 2) - (this.childElementWidth / 2);
+            this.translateX(this.inicialPosition);
+        }
+
         this.spaceBetweenChilds = lastChild.getMarginRight() + lastChild.getMarginLeft();
 
         this.containerElementWidth = this.getContainerElementWidth();
@@ -42,39 +49,54 @@ export default class Carousel extends Vue {
         const elementLeftPosition: number = this.containerElement.getLeftPosition() - this.containerElement.getMarginLeft();
         const elementRightPosition: number = window.innerWidth - elementLeftPosition - this.containerElement.getWidth();
 
-        const windowBiggerThanContainer: boolean = Math.abs(this.containerElementWidth) < window.innerWidth;
+        const windowBiggerThanContainer: boolean = Math.abs(this.containerElementWidth) + this.inicialPosition < window.innerWidth;
         this.rightExtreme = windowBiggerThanContainer
             ? 0
-            : (window.innerWidth + this.containerElementWidth) - (elementRightPosition + elementLeftPosition);
+            : ((window.innerWidth + this.containerElementWidth) - (elementRightPosition + elementLeftPosition)) - this.inicialPosition;
 
         this.animationClasses = this.getAnimationClasses();
     }
 
-    onTouchStart(touchEvent: TouchEvent): void {
-        if(touchEvent.cancelable) {
-            touchEvent.preventDefault();
+    onInteractionStart(event: Event): void {
+        if(event.cancelable) {
+            event.preventDefault();
         }
 
         this.moving = true;
 
         this.stopTransition();
 
-        this.onTouchStartPosition = touchEvent.touches[0].clientX;
+        if(event instanceof TouchEvent) {
+            this.onInteractionStartPosition = event.touches[0].clientX;
 
-        document.ontouchmove = this.onTouchMove;
-        document.ontouchend = this.onTouchEnd;
+            document.ontouchmove = this.onInteractionMove;
+            document.ontouchend = this.onInteractionEnd;
+        } else if(event instanceof MouseEvent) {
+            this.onInteractionStartPosition = event.clientX;
 
-        this.$emit("touchstart");
+            document.onmousemove = this.onInteractionMove;
+            document.onmouseup = this.onInteractionEnd;
+        }
+
+        this.$emit("interactionstart");
     }
 
-    onTouchMove(touchEvent: TouchEvent): void {
-        touchEvent.preventDefault();
+    onInteractionMove(event: Event): void {
+        event.preventDefault();
 
-        const position: number = this.elementPosition + (touchEvent.touches[0].clientX - this.onTouchStartPosition)
+        let interactionPosition: number = 0;
+
+        if(event instanceof TouchEvent) {
+            interactionPosition = event.touches[0].clientX;
+        } else if(event instanceof MouseEvent) {
+            interactionPosition = event.clientX;
+        }
+
+        const position: number = this.elementPosition + (interactionPosition - this.onInteractionStartPosition);
         let translateX: number = position;
 
-        if(position > 0) {
-            translateX = position / 50;
+        if(position > this.inicialPosition) {
+            translateX = (position / 50) + this.inicialPosition;
         } else if(position < this.rightExtreme) {
             translateX = this.rightExtreme + ((position - this.rightExtreme) / 50);
         }
@@ -83,22 +105,24 @@ export default class Carousel extends Vue {
 
         this.currentIndex = this.getCurrentIndex(translateX);
 
-        const percentageMoved: number = (position / (this.containerElementWidth + this.childElementWidth)) * 100;
+        const percentageMoved: number = ((position - this.inicialPosition) / (this.containerElementWidth + this.childElementWidth)) * 100;
 
-        this.$emit("touchmove", percentageMoved);
+        this.$emit("interactionmove", percentageMoved);
     }
 
-    onTouchEnd(): void {
+    onInteractionEnd(): void {
         this.moving = false;
 
         this.containerElement.classList.add(...this.animationClasses);
 
         this.translateThroughIndex();
 
-        this.$emit("touchend");
+        this.$emit("interactionend");
 
         document.ontouchmove = null;
         document.ontouchend = null;
+        document.onmousemove = null;
+        document.onmouseup = null;
     }
 
     translateThroughElement(element: HTMLElement): void {
@@ -108,7 +132,7 @@ export default class Carousel extends Vue {
     }
 
     translateThroughIndex(): void {
-        const position: number = this.currentIndex * -(this.childElementWidth + this.spaceBetweenChilds);
+        const position: number = (this.currentIndex * -(this.childElementWidth + this.spaceBetweenChilds)) + this.inicialPosition;
         const translateX: number = position < this.rightExtreme || this.getElementPosition() < this.rightExtreme
             ? this.rightExtreme
             : position;
@@ -128,19 +152,19 @@ export default class Carousel extends Vue {
 
         this.containerElement.classList.remove(...this.animationClasses);
 
-        if(translateX <= -(maxIndex * this.childElementWidth) && maxIndex !== 0) {
-            translateX = -(maxIndex * this.childElementWidth);
-        } else if(translateX >= -(minIndex * this.childElementWidth) && minIndex !== this.containerElement.children.length - 1) {
-            translateX = -(minIndex * this.childElementWidth);
-        } else if(position > 0) {
+        if(translateX <= -((maxIndex * this.childElementWidth) - this.inicialPosition) && maxIndex !== 0) {
+            translateX = -((maxIndex * this.childElementWidth) - this.inicialPosition);
+        } else if(translateX >= -((minIndex * this.childElementWidth) - this.inicialPosition) && minIndex !== this.containerElement.children.length - 1) {
+            translateX = -((minIndex * this.childElementWidth) - this.inicialPosition);
+        } else if(position > this.inicialPosition) {
             this.containerElement.classList.add(...this.animationClasses);
             translateX = position > (this.changeIndexPercentage / 100) * this.childElementWidth
                 ? this.rightExtreme
-                : 0;
+                : this.inicialPosition;
         } else if(position < this.rightExtreme) {
             this.containerElement.classList.add(...this.animationClasses);
             translateX = position < this.rightExtreme - ((this.changeIndexPercentage / 100) * this.childElementWidth)
-                ? 0
+                ? this.inicialPosition
                 : this.rightExtreme;
         }
 
@@ -157,11 +181,12 @@ export default class Carousel extends Vue {
     }
 
     getCurrentIndex(translateX: number): number {
+        const translate: number = translateX - this.inicialPosition;
         const childSizePercentageToAvoid: number = (100 - this.changeIndexPercentage) / 100;
         const spaceToAvoid: number = this.spaceBetweenChilds + (this.childElementWidth * childSizePercentageToAvoid);
-        const convertToPercentage: number = (translateX - spaceToAvoid) / this.containerElementWidth;
+        const convertToPercentage: number = (translate - spaceToAvoid) / this.containerElementWidth;
         const convertToChildSizePercentage: number = convertToPercentage * this.containerElement.children.length;
-        return Math.trunc(convertToChildSizePercentage);
+        return translateX <= this.rightExtreme ? this.containerElement.children.length - 1 : Math.trunc(convertToChildSizePercentage);
     }
 
     getElementPosition(): number {
