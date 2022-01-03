@@ -16,7 +16,8 @@
     }
 
     .closeButton {
-        @apply flex justify-center items-center w-10 h-10 float-right;
+        @apply absolute flex right-0 top-0 justify-center items-center w-10 h-10;
+        padding: inherit;
 
         &::after {
             @apply fixed border border-white border-opacity-50 rounded-full;
@@ -46,27 +47,21 @@
         @apply w-full border border-white font-bold p-2 text-sm;
     }
 
-    .contactList {
-        @apply text-sm space-y-4;
+    .contactInfo {
+        .contactList {
+            @apply text-sm space-y-4;
 
-        ul {
-            @apply flex space-x-4;
+            li {
+                @apply flex space-x-4 items-center;
 
-            svg {
-                @apply w-5;
+                svg {
+                    @apply w-5;
+                }
             }
         }
     }
 
-    .socialList {
-        @apply space-y-4 text-sm;
-
-        ul {
-            @apply flex space-x-4 items-center;
-
-            svg {
-                @apply w-5;
-            }
-        }
+    .termsPrivacy {
+        @apply space-y-4;
     }
 }
