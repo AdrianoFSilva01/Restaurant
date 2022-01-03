@@ -1,5 +1,5 @@
 .restaurant {
-    @apply space-y-4;
+    @apply space-y-4 relative;
 
     .slider {
         @apply w-full h-72 m-auto;
@@ -55,14 +55,14 @@
     }
 
     .carouselItem {
-        @apply w-full flex-shrink-0 text-center;
+        @apply w-full flex flex-shrink-0 items-center justify-center text-center;
     }
 
     .leftArrow {
-        @apply w-10 h-6 ml-4 mb-4;
+        @apply w-10 h-6 ml-4 mr-4;
     }
 
     .rightArrow {
-        @apply w-10 h-6 mr-4;
+        @apply w-10 h-6 mr-4 ml-4;
     }
 }
