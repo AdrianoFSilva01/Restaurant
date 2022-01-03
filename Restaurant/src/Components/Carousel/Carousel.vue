@@ -1,5 +1,5 @@
 <template>
-    <div ref="containerElement" @touchstart="onTouchStart" style="touch-action: none" >
+    <div ref="containerElement" @touchstart="onInteractionStart" @mousedown="onInteractionStart" style="touch-action: none" >
         <slot />
     </div>
 </template>
