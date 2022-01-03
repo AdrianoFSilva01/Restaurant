@@ -33,6 +33,7 @@ export default class Header extends Vue {
                     this.element.style.paddingTop = "0";
                     this.element.style.paddingBottom = "0";
                     this.element.style.top = "0px";
+                    this.element.classList.add("shadow-md");
                 } else if(window.scrollY <= this.elementHeight && window.scrollY >= 0) {
                     const percentage: number = (window.scrollY / this.elementHeight);
                     const imageElementPadding: number = percentage * this.imagePaddingWhenSticky;
@@ -43,6 +44,7 @@ export default class Header extends Vue {
                     this.element.style.paddingTop = `${padding}px`;
                     this.element.style.paddingBottom = `${padding}px`;
                     this.imageElement.style.padding = `${imageElementPadding}px`;
+                    this.element.classList.remove("shadow-md");
                 }
             }
 
