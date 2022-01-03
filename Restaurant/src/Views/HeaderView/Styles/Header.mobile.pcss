@@ -1,5 +1,5 @@
 .headerContainer {
-    @apply sticky flex p-8 items-center bg-white z-10 shadow-md transition-all ease-linear duration-700;
+    @apply sticky flex p-8 items-center bg-white z-10 transition-all ease-linear duration-700;
 
     .navigationText {
         @apply leading-3 text-sm flex-1;
@@ -10,7 +10,7 @@
     }
 
     .navigationIcon {
-        @apply flex-1 flex justify-end;
+        @apply flex-1 flex justify-end items-center space-x-4;
 
         .hamburgerMenu {
             @apply w-4 space-y-1;
@@ -30,6 +30,16 @@
                     @apply transform translate-y-0.5;
                 }
             }
+        }
+
+        .navigationPages {
+            @apply hidden;
+        }
+    }
+
+    .navigationButton {
+        .button {
+            @apply hidden border border-black p-2 text-sm;
         }
     }
 }
