@@ -34,6 +34,12 @@ export default class Carousel extends Vue {
     }
 
     mounted(): void {
+        this.setup();
+
+        window.addEventListener("resize", this.setup);
+    }
+
+    setup(): void {
         const lastChild: HTMLElement = this.containerElement.lastElement();
         this.childElementWidth = lastChild.getWidth();
 
@@ -69,8 +75,8 @@ export default class Carousel extends Vue {
         if(event instanceof TouchEvent) {
             this.onInteractionStartPosition = event.touches[0].clientX;
 
-            document.ontouchmove = this.onInteractionMove;
-            document.ontouchend = this.onInteractionEnd;
+            document.addEventListener("touchmove", this.onInteractionMove);
+            document.addEventListener("touchend", this.onInteractionEnd);
         } else if(event instanceof MouseEvent) {
             this.onInteractionStartPosition = event.clientX;
 
@@ -83,6 +89,7 @@ export default class Carousel extends Vue {
 
     onInteractionMove(event: Event): void {
         event.preventDefault();
+        (this.$el as HTMLElement).classList.replace("cursor-grab", "cursor-grabbing");
 
         let interactionPosition: number = 0;
 
@@ -112,6 +119,7 @@ export default class Carousel extends Vue {
 
     onInteractionEnd(): void {
         this.moving = false;
+        (this.$el as HTMLElement).classList.replace("cursor-grabbing", "cursor-grab");
 
         this.containerElement.classList.add(...this.animationClasses);
 
@@ -119,8 +127,8 @@ export default class Carousel extends Vue {
 
         this.$emit("interactionend");
 
-        document.ontouchmove = null;
-        document.ontouchend = null;
+        document.removeEventListener("touchmove", this.onInteractionMove);
+        document.removeEventListener("touchend", this.onInteractionEnd);
         document.onmousemove = null;
         document.onmouseup = null;
     }
@@ -136,6 +144,7 @@ export default class Carousel extends Vue {
         const translateX: number = position < this.rightExtreme || this.getElementPosition() < this.rightExtreme
             ? this.rightExtreme
             : position;
+
         this.translateX(translateX);
     }
 

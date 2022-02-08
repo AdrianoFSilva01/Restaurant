@@ -1,9 +1,9 @@
 <template>
-    <div ref="containerElement" @touchstart="onInteractionStart" @mousedown="onInteractionStart" style="touch-action: none" >
+    <div class="cursor-grab" ref="containerElement" @touchstart="onInteractionStart" @mousedown="onInteractionStart" style="touch-action: none" >
         <slot />
     </div>
 </template>
 
 <script lang="ts" src="./Carousel.ts" />
 
-<style scoped lang="postcss" src="./Carousel.pcss" />
+<style scoped lang="scss" src="./Carousel.scss" />
