@@ -1,7 +1,11 @@
+import WaveButton from "@/Components/WaveButton/WaveButton.vue";
 import { Options, Vue } from "vue-class-component";
 import { Prop } from "vue-property-decorator";
 
 @Options({
+    components: {
+        WaveButton
+    },
     emits: [
         "close-button-clicked"
     ]
@@ -22,5 +26,9 @@ export default class Overlay extends Vue {
 
     onTransitionEnd(): void {
         this.animateChilds = this.display;
+    }
+
+    scrollToTop(): void {
+        document.documentElement.scrollTop = 0;
     }
 }

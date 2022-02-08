@@ -15,10 +15,10 @@
             content: "";
         }
 
-        .contactInfo {
+        .contact-info {
             @apply row-span-2 col-span-2 flex justify-evenly items-end;
 
-            .contactList {
+            .contact-list {
                 li {
                     @apply p-2;
 
@@ -29,7 +29,7 @@
             }
         }
 
-        .termsPrivacy {
+        .terms-privacy {
             @apply flex flex-col justify-end;
         }
     }

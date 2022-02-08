@@ -1,13 +1,13 @@
 .overlay {
-    @apply fixed z-50 transition-all duration-500 space-y-8 w-full h-full p-8 font-bold text-white bg-gray-700;
+    @apply fixed z-50 transition-all duration-500 space-y-8 w-full h-full p-8 font-bold text-white bg-gold;
 
     &.over {
-        .delayedTransition.animate {
+        .delayed-transition.animate {
             @apply transition-all duration-500 visible opacity-100 translate-y-0;
         }
     }
 
-    .delayedTransition {
+    .delayed-transition {
         @apply opacity-0 transform translate-y-5;
     }
 
@@ -15,8 +15,8 @@
         @apply w-full border-white border-opacity-50;
     }
 
-    .closeButton {
-        @apply absolute flex right-0 top-0 justify-center items-center w-10 h-10;
+    .close-button {
+        @apply absolute flex right-0 top-0 justify-center items-center w-10 h-10 cursor-pointer;
         padding: inherit;
 
         &::after {
@@ -39,16 +39,16 @@
         }
     }
 
-    .navigationList {
+    .navigation-list {
         @apply text-2xl space-y-4;
     }
 
-    .orderButton {
-        @apply w-full border border-white font-bold p-2 text-sm;
+    .order-button {
+        @apply w-full border-white font-bold;
     }
 
-    .contactInfo {
-        .contactList {
+    .contact-info {
+        .contact-list {
             @apply text-sm space-y-4;
 
             li {
@@ -61,7 +61,7 @@
         }
     }
 
-    .termsPrivacy {
+    .terms-privacy {
         @apply space-y-4;
     }
 }
