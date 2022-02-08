@@ -1,19 +1,19 @@
-.headerContainer {
-    @apply sticky flex p-8 items-center bg-white z-10 transition-all ease-linear duration-700;
+.header-container {
+    @apply flex p-8 items-center bg-white transition-all ease-linear duration-300 transform;
 
-    .navigationText {
+    .navigation-text {
         @apply leading-3 text-sm flex-1;
     }
 
-    .navigationImage {
-        @apply flex justify-center h-14 flex-1;
+    .navigation-image {
+        @apply flex justify-center h-20 flex-1;
     }
 
-    .navigationIcon {
+    .navigation-icon {
         @apply flex-1 flex justify-end items-center space-x-4;
 
-        .hamburgerMenu {
-            @apply w-4 space-y-1;
+        .hamburger-menu {
+            @apply w-4 space-y-1 cursor-pointer;
 
             :nth-child(n) {
                 @apply border-black w-full transition-all duration-500;
@@ -32,14 +32,29 @@
             }
         }
 
-        .navigationPages {
+        .navigation-pages {
             @apply hidden;
         }
     }
 
-    .navigationButton {
+    .navigation-button {
         .button {
-            @apply hidden border border-black p-2 text-sm;
+            @apply hidden;
         }
+    }
+}
+
+.transform-opacity-animation {
+    animation: transformAndOpacityAnim 1s forwards;
+}
+
+@keyframes transformAndOpacityAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
     }
 }

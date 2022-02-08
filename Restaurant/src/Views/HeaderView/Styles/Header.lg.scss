@@ -1,16 +1,16 @@
 @screen lg {
-    .headerContainer {
+    .header-container {
         @apply p-12;
 
-        .navigationText {
+        .navigation-text {
             @apply hidden;
         }
 
-        .navigationIcon {
+        .navigation-icon {
             @apply order-first justify-start;
         }
 
-        .navigationButton {
+        .navigation-button {
             @apply flex flex-1 justify-end;
 
             .button {

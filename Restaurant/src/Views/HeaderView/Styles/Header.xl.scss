@@ -1,0 +1,11 @@
+@screen xl {
+    .header-container {
+        @apply px-24;
+
+        .navigation-icon {
+            .navigation-pages {
+                @apply block;
+            }
+        }
+    }
+}
