@@ -1,0 +1,7 @@
+@screen xl {
+    main {
+        > :nth-child(n) {
+            @apply px-24;
+        }
+    }
+}

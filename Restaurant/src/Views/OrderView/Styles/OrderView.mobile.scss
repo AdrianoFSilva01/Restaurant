@@ -1,0 +1,15 @@
+main {
+    > :nth-child(n) {
+        @apply px-2;
+    }
+
+    .navigation {
+        @apply w-full;
+        max-width: 25rem;
+    }
+
+    .navigation-button {
+        @apply w-full bg-gray-700 py-2 text-white;
+        max-width: 25rem;
+    }
+}

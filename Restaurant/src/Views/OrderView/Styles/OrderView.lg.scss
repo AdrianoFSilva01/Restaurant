@@ -1,0 +1,7 @@
+@screen lg {
+    main {
+        > :nth-child(n) {
+            @apply px-12;
+        }
+    }
+}
