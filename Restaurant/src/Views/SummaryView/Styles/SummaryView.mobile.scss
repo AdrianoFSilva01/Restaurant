@@ -1,0 +1,22 @@
+.category-section {
+    @apply opacity-0;
+
+    .category-name {
+        @apply bg-gold font-bold py-1 pl-2;
+    }
+}
+
+.fade-animation {
+    animation: fadeAnim 0.5s forwards;
+}
+
+@keyframes fadeAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(20%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}

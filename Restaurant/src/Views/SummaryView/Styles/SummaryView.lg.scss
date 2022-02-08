@@ -1,0 +1,7 @@
+@screen lg {
+    .category-section {
+        .category-name {
+            @apply w-2/12 flex items-center justify-center p-0;
+        }
+    }
+}
