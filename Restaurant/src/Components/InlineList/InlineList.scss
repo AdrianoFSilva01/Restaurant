@@ -1,0 +1,11 @@
+.inline-list-container {
+    @apply flex;
+
+    .list-item {
+        @apply flex items-center;
+
+        .list-text {
+            @apply text-2xl transition-opacity duration-500 cursor-pointer;
+        }
+    }
+}
