@@ -12,11 +12,11 @@
             @apply w-full h-70vh;
         }
 
-        .arrowsContainer {
+        .arrows-container {
             @apply absolute mx-0 top-0 left-0 w-full h-full items-center;
             padding: inherit;
 
-            .animatedArrows {
+            .animated-arrows {
                 &:first-child {
                     @apply transform -translate-x-1/2;
                 }
@@ -28,10 +28,10 @@
         }
     }
 
-    .restaurantInfo {
+    .restaurant-info {
         @apply flex space-x-16 justify-center space-y-0;
 
-        .restaurantInfoText {
+        .restaurant-info-text {
             @apply text-base;
         }
     }
@@ -41,11 +41,11 @@
             @apply h-70vh;
         }
 
-        .leftArrow {
+        .left-arrow {
             @apply ml-0;
         }
 
-        .rightArrow {
+        .right-arrow {
             @apply mr-0;
         }
     }

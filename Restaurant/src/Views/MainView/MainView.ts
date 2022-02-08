@@ -6,6 +6,7 @@ import InlineListTs from "@/Components/InlineList/InlineList";
 import InlineList from "@/Components/InlineList/InlineList.vue";
 import SliderTs from "@/Components/Slider/Slider";
 import Slider from "@/Components/Slider/Slider.vue";
+import Category from "@/Models/Category";
 import { Axios, AxiosResponse } from "axios";
 import { mixins, Options } from "vue-class-component";
 import { Inject, Ref, Watch } from "vue-property-decorator";
@@ -141,25 +142,4 @@ export default class MainView extends mixins(ArrowDirectionMixin) {
     potato(number: number): number {
         return number;
     }
-}
-
-class Category {
-    id!: number;
-    name!: string;
-    imageUrl!: string;
-    catalogs!: Array<Catalog>;
-}
-
-class Catalog {
-    id!: number;
-    name!: string;
-    imageUrl!: string;
-    haveIngredients!: boolean;
-    catalogInfos!: Array<CatalogInfo>;
-}
-
-class CatalogInfo {
-    size!: string;
-    price!: number;
-    description!: string;
 }
