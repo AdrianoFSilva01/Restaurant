@@ -12,10 +12,10 @@ export default class AnimatedArrows extends Vue {
     }
 
     onClick(): void {
-        (this.$el as HTMLElement).classList.add("clickAnimation");
+        (this.$el as HTMLElement).classList.add("click-animation");
     }
 
     onTransitionEnd(): void {
-        (this.$el as HTMLElement).classList.remove("clickAnimation");
+        (this.$el as HTMLElement).classList.remove("click-animation");
     }
 }

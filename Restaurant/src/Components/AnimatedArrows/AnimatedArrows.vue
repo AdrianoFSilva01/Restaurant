@@ -1,11 +1,11 @@
 <template>
-    <button class="arrowButton" @click="onClick" @transitionend="onTransitionEnd">
-        <hr class="sideLines" :class="childClass" />
-        <hr class="sideLines" :class="childClass" />
-        <hr class="middleLine" :class="childClass" />
+    <button class="arrow-button" @click="onClick" @transitionend="onTransitionEnd">
+        <hr class="side-lines" :class="childClass" />
+        <hr class="side-lines" :class="childClass" />
+        <hr class="middle-line" :class="childClass" />
     </button>
 </template>
 
 <script lang="ts" src="./AnimatedArrows.ts" />
 
-<style scoped lang="postcss" src="./AnimatedArrows.pcss" />
+<style scoped lang="scss" src="./AnimatedArrows.scss" />
