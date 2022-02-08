@@ -1,5 +1,5 @@
 <template>
-    <div class="sliderContainer" v-bind="$attrs" @touchstart="onInteractionStart" @mousedown="onInteractionStart" @transitionend="onTransitionEnd" >
+    <div class="slider-container cursor-grab" v-bind="$attrs" @touchstart="onInteractionStart" @mousedown="onInteractionStart" @transitionstart="onTransitionStart">
         <img class="opacity-100 transition-opacity duration-500" />
         <img class="opacity-0 transition-opacity duration-500" />
         <img class="opacity-0 transition-opacity duration-500" />
@@ -8,4 +8,4 @@
 
 <script lang="ts" src="./Slider.ts" />
 
-<style scoped lang="postcss" src="./Slider.pcss" />
+<style scoped lang="scss" src="./Slider.scss" />

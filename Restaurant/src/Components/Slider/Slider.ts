@@ -17,6 +17,7 @@ export default class Slider extends Vue {
     containerMaxChildrenLenght: number = 0;
     previousIndex: number = 0;
     nextIndex: number = 1;
+    oldIndex: number = 0;
     onInteractionStartPosition: number = 0;
     changeIndexPercentage: number = 40;
     changeOpacityPercentage: number = 10;
@@ -50,6 +51,11 @@ export default class Slider extends Vue {
         this.previousIndex = this.images.length - 1;
 
         this.insertInitialImages();
+
+        window.addEventListener("resize", () => {
+            this.containerElement = this.$el as HTMLElement;
+            this.containerMaxChildrenLenght = this.containerElement.children.length;
+        });
     }
 
     onInteractionStart(event: Event): void {
@@ -64,8 +70,8 @@ export default class Slider extends Vue {
         if(event instanceof TouchEvent) {
             this.onInteractionStartPosition = event.touches[0].clientX;
 
-            document.ontouchmove = this.onInteractionMove;
-            document.ontouchend = this.onInteractionEnd;
+            document.addEventListener("touchmove", this.onInteractionMove);
+            document.addEventListener("touchend", this.onInteractionEnd);
         } else if(event instanceof MouseEvent) {
             this.onInteractionStartPosition = event.clientX;
 
@@ -77,6 +83,8 @@ export default class Slider extends Vue {
     }
 
     onInteractionMove(event: Event): void {
+        (this.$el as HTMLElement).classList.replace("cursor-grab", "cursor-grabbing");
+
         let interactionPosition: number = 0;
 
         if(event instanceof TouchEvent) {
@@ -123,6 +131,7 @@ export default class Slider extends Vue {
     }
 
     onInteractionEnd(): void {
+        (this.$el as HTMLElement).classList.replace("cursor-grabbing", "cursor-grab");
         this.moving = false;
 
         if(this.containerElement.children.length > 3) {
@@ -145,8 +154,8 @@ export default class Slider extends Vue {
 
         this.$emit("interactionend");
 
-        document.ontouchmove = null;
-        document.ontouchend = null;
+        document.removeEventListener("touchmove", this.onInteractionMove);
+        document.removeEventListener("touchend", this.onInteractionEnd);
         document.onmousemove = null;
         document.onmouseup = null;
     }
@@ -200,19 +209,28 @@ export default class Slider extends Vue {
         }
     }
 
-    onTransitionEnd(event: Event): void {
-        if((event.target as HTMLElement).style.opacity !== "0") {
-            this.containerElement.removeChild(this.containerElement.firstElement());
+    onTransitionStart(event: Event): void {
+        const didntChange: boolean = this.currentIndex === this.oldIndex;
+        const next: boolean = (this.oldIndex < this.currentIndex || (this.oldIndex === this.images.length - 1 && this.currentIndex === 0)) && !(this.oldIndex === 0 && this.currentIndex === this.images.length -1);
 
-            this.images[this.currentIndex] === (this.containerElement.firstElementChild as HTMLImageElement).src
-                ? this.containerElement.removeChild(this.containerElement.firstElement().nextSiblingElement())
-                : this.containerElement.removeChild(this.containerElement.firstElement());
+        if(!didntChange) {
+            (event.target as HTMLElement).addEventListener("transitionend", () => {
+                if((event.target as HTMLElement).style.opacity !== "0") {
+                    this.containerElement.removeChild(this.containerElement.firstElement());
 
-            if(this.containerElement.children.length < 3) {
-                this.checkIndexs();
-                this.insertImageElements();
-            }
+                    next
+                        ? this.containerElement.removeChild(this.containerElement.firstElement())
+                        : this.containerElement.removeChild(this.containerElement.firstElement().nextSiblingElement());
+
+                    if(this.containerElement.children.length < 3) {
+                        this.checkIndexs();
+                        this.insertImageElements();
+                    }
+                }
+            });
         }
+
+        this.oldIndex = this.currentIndex;
     }
 
     insertInitialImages(): void {
@@ -248,6 +266,8 @@ export default class Slider extends Vue {
                 this.checkIndexs();
                 this.insertImageElements();
             }
+
+            this.oldIndex = this.currentIndex;
         }
     }
 
