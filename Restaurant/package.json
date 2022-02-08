@@ -12,7 +12,8 @@
     "core-js": "^3.8.3",
     "eslint": "^7.20.0",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.6"
+    "vue-router": "^4.0.6",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/ts-nameof": "^4.2.1",

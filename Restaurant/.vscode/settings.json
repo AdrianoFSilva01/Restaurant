@@ -16,7 +16,7 @@
     "files.trimFinalNewlines": true,
     "files.trimTrailingWhitespace": true,
     "files.associations": {
-        "*.pcss": "postcss"
+        "*.scss": "postcss"
     },
     "files.exclude": {
         "node_modules": true

@@ -10,8 +10,10 @@ builder.Services.AddControllers().AddFluentValidation();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var DbPath = System.IO.Path.Join(Directory.GetCurrentDirectory(), "Restaurant.db");
+
 builder.Services.AddDbContext<RestaurantDbContext>(
-options => options.UseSqlServer(builder.Configuration.GetConnectionString("RestaurantConnection")));
+options => options.UseSqlite($"Data Source={DbPath}"));
 
 var app = builder.Build();
 
