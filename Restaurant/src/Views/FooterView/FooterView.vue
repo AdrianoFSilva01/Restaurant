@@ -10,24 +10,22 @@
         </div>
         <div class="space-y-6 md:flex">
             <form class="form">
-                <div class="nameInputs">
+                <div class="name-inputs">
                     <input class="input" placeholder="First Name" />
                     <input class="input" placeholder="Last Name" />
                 </div>
                 <input class="input" placeholder="Email Adress" />
-                <label class="privacyPolicy">
+                <label class="privacy-policy">
                     <input class="input" type="checkbox" />
                     <p class="text-sm">
                         By submitting this form, you accept our privacy policy.
                     </p>
                 </label>
-                <button class="button">
-                    Send
-                </button>
+                <WaveButton class="button" background-color="white" text-color="white" text-hover-color="#d6a159" buttontext="Send" />
             </form>
             <div class="contacts">
-                <ul class="contactList">
-                    <li class="contactItem">
+                <ul class="contact-list">
+                    <li class="contact-item">
                         <svg class="w-5" viewBox="0 0 100 100">
                             <use href="@/Assets/Images/Facebook.svg#facebook" />
                         </svg>
@@ -35,7 +33,7 @@
                             Facebook
                         </p>
                     </li>
-                    <li class="contactItem">
+                    <li class="contact-item">
                         <svg class="w-5" viewBox="0 0 100 100">
                             <use href="@/Assets/Images/Instagram.svg#instagram" />
                         </svg>
@@ -43,7 +41,7 @@
                             Instagram
                         </p>
                     </li>
-                    <li class="contactItem">
+                    <li class="contact-item">
                         <svg class="w-5" viewBox="0 0 100 100">
                             <use href="@/Assets/Images/Phone.svg#phone" />
                         </svg>
@@ -51,7 +49,7 @@
                             931 662 001
                         </p>
                     </li>
-                    <li class="contactItem">
+                    <li class="contact-item">
                         <svg class="w-5" viewBox="0 0 100 100">
                             <use href="@/Assets/Images/Mail.svg#mail" />
                         </svg>
@@ -67,4 +65,4 @@
 
 <script lang="ts" src="./FooterView.ts" />
 
-<style scoped lang="postcss" src="./Styles/FooterView.pcss" />
+<style scoped lang="scss" src="./Styles/FooterView.scss" />

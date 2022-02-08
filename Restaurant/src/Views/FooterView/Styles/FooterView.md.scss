@@ -3,7 +3,7 @@
         .form {
             @apply w-4/6 flex-shrink-0;
 
-            .nameInputs {
+            .name-inputs {
                 @apply flex space-x-6 space-y-0;
             }
         }
@@ -11,10 +11,10 @@
         .contacts {
             @apply flex justify-center;
 
-            .contactList {
+            .contact-list {
                 @apply flex-col justify-evenly content-center;
 
-                .contactItem {
+                .contact-item {
                     @apply items-center w-auto;
                 }
             }

@@ -1,10 +1,10 @@
 .footer {
-    @apply p-8 space-y-10 bg-gray-700 text-white;
+    @apply p-8 space-y-10 bg-gold text-white;
 
     .form {
         @apply space-y-6;
 
-        .nameInputs {
+        .name-inputs {
             @apply space-y-6;
         }
 
@@ -12,8 +12,8 @@
             @apply w-full bg-transparent border-b border-white border-opacity-30 focus:border-opacity-100 placeholder-white transition-all duration-500 outline-none;
         }
 
-        .privacyPolicy {
-            @apply relative flex items-center space-x-2;
+        .privacy-policy {
+            @apply relative flex items-center space-x-2 cursor-pointer;
 
             &:before {
                 @apply absolute -left-0.5 w-3.5 h-3.5 border border-white;
@@ -30,17 +30,17 @@
         }
 
         .button {
-            @apply w-full p-2 text-sm border border-white;
+            @apply w-full border-white;
         }
     }
 
     .contacts {
         @apply w-full;
 
-        .contactList {
+        .contact-list {
             @apply flex flex-wrap text-sm gap-y-4;
 
-            .contactItem {
+            .contact-item {
                 @apply flex space-x-4 w-1/2;
             }
         }
