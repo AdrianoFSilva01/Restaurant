@@ -50,11 +50,11 @@ public class RestaurantInitializer
     {
         Categories = new Dictionary<int, Category>()
             {
-                {1, new Category { Name = "Entradas", ImageUrl = "http://svgshare.com/i/DvT.svg" } },
-                {2, new Category { Name = "Carnes", ImageUrl = "http://svgshare.com/i/Dwz.svg" } },
-                {3, new Category { Name = "Peixes", ImageUrl = "http://svgshare.com/i/DxV.svg" } },
-                {4, new Category { Name = "Bebidas", ImageUrl = "http://svgshare.com/i/DwK.svg" } },
-                {5, new Category { Name = "Sobremesa", ImageUrl = "http://svgshare.com/i/Dx0.svg" } }
+                {1, new Category { Name = "Entradas", ImageUrl = "http://svgshare.com/i/DvT.svg", HeroImageUrl = "https://blog.atau.com.br/wp-content/uploads/2019/03/opcoes-de-entrada-restaurante.jpg" } },
+                {2, new Category { Name = "Carnes", ImageUrl = "http://svgshare.com/i/Dwz.svg", HeroImageUrl = "https://supermercadomanos.com.br/wp-content/uploads/2017/07/Carnes.jpg" } },
+                {3, new Category { Name = "Peixes", ImageUrl = "http://svgshare.com/i/DxV.svg", HeroImageUrl = "https://www.bestguide.pt/wp-content/uploads/2018/05/peixe.jpg" } },
+                {4, new Category { Name = "Bebidas", ImageUrl = "http://svgshare.com/i/DwK.svg", HeroImageUrl = "https://www.royalcaribbean.com.br/wp-content/uploads/2018/05/pacote-de-bebidas-1.jpg" } },
+                {5, new Category { Name = "Sobremesa", ImageUrl = "http://svgshare.com/i/Dx0.svg", HeroImageUrl = "https://static.vecteezy.com/ti/fotos-gratis/p1/3699787-delicioso-doce-buffet-com-cupcakes-macaroons-outras-sobremesas-gr%C3%A1tis-foto.jpg" } }
         };
         context.Categories.AddRange(Categories.Values);
 
@@ -163,11 +163,11 @@ public class RestaurantInitializer
                 { id++, new Catalog { Name = "Tarte de Quinoa", ImageUrl = "http://i.imgur.com/nqHxrUQ.png", HeroImageUrl = "https://cdn.nomadfoodscdn.com/-/media/project/bluesteel/iglo-pt/receitas/2020/gerador-receitas/tarte-lowcarb-de-quinoa-abobora-e-ervilha-com-salada-de-espinafre-fresco-e-nozes.jpg" } },
                 { id++, new Catalog { Name = "Quiche de Legumes", ImageUrl = "http://i.imgur.com/aqNBIvg.png", HeroImageUrl = "https://cdn.vidaativa.pt/uploads/2020/01/quiche-cogumelos-legumes.jpg" } },
                 { id++, new Catalog { Name = "Quiche de Salmão", ImageUrl = "http://i.imgur.com/kD3Gai1.png", HeroImageUrl = "https://media-manager.noticiasaominuto.com/1920/1605523869/naom_5fb2566929ea5.jpg?crop_params=eyJsYW5kc2NhcGUiOnsiY3JvcFdpZHRoIjoyNTYwLCJjcm9wSGVpZ2h0IjoxNDQwLCJjcm9wWCI6MCwiY3JvcFkiOjIxfSwicG9ydHJhaXQiOnsiY3JvcFdpZHRoIjo5NTQsImNyb3BIZWlnaHQiOjE2OTYsImNyb3BYIjo3NDYsImNyb3BZIjoxMH19" } },
-                { id++, new Catalog { Name = "Tortilhas Verdes", ImageUrl = "http://i.imgur.com/MHgXBK6.png" } },
-                { id++, new Catalog { Name = "Tortilha de Milho", ImageUrl = "http://i.imgur.com/AORyj0l.png" } },
-                { id++, new Catalog { Name = "Wraps com Pepino e Mousse de Salmão", ImageUrl = "http://i.imgur.com/79ubX5o.png" } },
-                { id++, new Catalog { Name = "Wraps de Mandioca", ImageUrl = "http://i.imgur.com/Czu5Jvc.png" } },
-                { id++, new Catalog { Name = "Tostas de Queijo", ImageUrl = "http://i.imgur.com/hV4ySZy.png" } }
+                { id++, new Catalog { Name = "Tortilhas Verdes", ImageUrl = "http://i.imgur.com/MHgXBK6.png", HeroImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2020/06/Tortilha-de-pimentos-verdes-CHPF-18-Large.jpg" } },
+                { id++, new Catalog { Name = "Tortilha de Milho", ImageUrl = "http://i.imgur.com/AORyj0l.png", HeroImageUrl = "https://i.ytimg.com/vi/FoU9qp9NLuo/maxresdefault.jpg" } },
+                { id++, new Catalog { Name = "Wraps com Pepino e Mousse de Salmão", ImageUrl = "http://i.imgur.com/79ubX5o.png", HeroImageUrl = "https://images.squarespace-cdn.com/content/v1/5ba7a02a7fdcb8cb9072e572/1563833923351-QH8W67XJ70Y01PWRE95F/Wrapps_1.JPG?format=2500w" } },
+                { id++, new Catalog { Name = "Wraps de Mandioca", ImageUrl = "http://i.imgur.com/Czu5Jvc.png", HeroImageUrl = "https://www.vaqueiro.pt/-/media/project/upfield/whitelabels/vaqueiro-pt/assets/recipes/sync-images/b972a945-5f4f-4a1b-b968-20946f7b79da.jpg?rev=bf8e22d2ae454054a4d7b2a45355587f&w=1600" } },
+                { id++, new Catalog { Name = "Tostas de Queijo", ImageUrl = "http://i.imgur.com/hV4ySZy.png", HeroImageUrl = "https://www.iguaria.com/wp-content/uploads/2016/10/Iguaria-Tosta-de-Queijo-e-Ovo.jpg" } }
 
             };
         Categories[1].Catalogs = common.Values.ToList();
@@ -178,11 +178,11 @@ public class RestaurantInitializer
                 { id++, new Catalog { Name = "Panados no Forno", ImageUrl = "http://i.imgur.com/kceE8UD.png", HeroImageUrl = "https://mamapaleo.blogs.nit.pt/wp-content/uploads/2017/06/IMG_8202-1-1300x731.jpg" } },
                 { id++, new Catalog { Name = "Jardineira de Perú", ImageUrl = "http://i.imgur.com/ZouoIsy.png", HeroImageUrl = "https://www.saborintenso.com/images/receitas/Jardineira-de-Peru-com-Cogumelos-SI-2.jpg" } },
                 { id++, new Catalog { Name = "Peru", ImageUrl = "http://i.imgur.com/GsrXqKt.png", HeroImageUrl = "https://fortissima.com.br/wp-content/uploads/2015/11/peru-de-natal-istock-getty-images1.jpg" } },
-                { id++, new Catalog { Name = "Strogonoff", ImageUrl = "http://i.imgur.com/NYHMnBo.png" } },
-                { id++, new Catalog { Name = "Borrego em Crosta de Alecrim", ImageUrl = "http://i.imgur.com/rSLdbGK.png" } },
-                { id++, new Catalog { Name = "Quiche de Frango", ImageUrl = "http://i.imgur.com/KX1oY9N.png" } },
-                { id++, new Catalog { Name = "Frango de Fricassé", ImageUrl = "http://i.imgur.com/6zlSU7b.png" } },
-                { id++, new Catalog { Name = "Carne de Porco à Alentejana", ImageUrl = "http://i.imgur.com/cJXvCnK.png" } }
+                { id++, new Catalog { Name = "Strogonoff", ImageUrl = "http://i.imgur.com/NYHMnBo.png", HeroImageUrl = "https://www.unileverfoodsolutions.com.br/dam/global-ufs/mcos/SLA/calcmenu/recipes/BR-recipes/chicken-&-other-poultry-dishes/strogonoff-de-frango/main-header.jpg" } },
+                { id++, new Catalog { Name = "Borrego em Crosta de Alecrim", ImageUrl = "http://i.imgur.com/rSLdbGK.png", HeroImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2018/03/perna-de-borrego-com-crosta-de-broa.jpg" } },
+                { id++, new Catalog { Name = "Quiche de Frango", ImageUrl = "http://i.imgur.com/KX1oY9N.png", HeroImageUrl = "https://cdn.vidaativa.pt/uploads/2020/01/receitas-quiche-frango.jpg" } },
+                { id++, new Catalog { Name = "Frango de Fricassé", ImageUrl = "http://i.imgur.com/6zlSU7b.png", HeroImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2021/02/fricasse-de-frango-scaled.jpg" } },
+                { id++, new Catalog { Name = "Carne de Porco à Alentejana", ImageUrl = "http://i.imgur.com/cJXvCnK.png", HeroImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2020/04/IMG_8107-scaled.jpg" } }
 
             };
         Categories[2].Catalogs = common.Values.ToList();
@@ -193,21 +193,21 @@ public class RestaurantInitializer
                 { id++, new Catalog { Name = "Lombos de Salmão Grelhados", ImageUrl = "http://i.imgur.com/ep15IHE.png", HeroImageUrl = "https://cdn.vidaativa.pt/uploads/2020/01/salmao-grelhado-com-oregaos.jpg" } },
                 { id++, new Catalog { Name = "Bacalhau com Natas", ImageUrl = "http://i.imgur.com/iYgAwFI.png", HeroImageUrl = "https://xtudoreceitas.com/wp-content/uploads/Bacalhau-com-Natas-Simples.jpg" } },
                 { id++, new Catalog { Name = "Açorda Rica de Marisco", ImageUrl = "http://i.imgur.com/91fjknG.png", HeroImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2015/04/A%C3%A7orda-de-mariscos-11.jpg" } },
-                { id++, new Catalog { Name = "Bacalhau à Bras", ImageUrl = "http://i.imgur.com/Zrj0YHS.png" } },
-                { id++, new Catalog { Name = "Carpaccio de Vieiras", ImageUrl = "http://i.imgur.com/1fy55SF.png" } },
-                { id++, new Catalog { Name = "Talharim de Vieiras", ImageUrl = "http://i.imgur.com/DC0THKE.png" } },
-                { id++, new Catalog { Name = "Filetes de Sardinha", ImageUrl = "http://i.imgur.com/dQvbPjZ.png" } },
-                { id++, new Catalog { Name = "Filetes de Peixe-espada", ImageUrl = "http://i.imgur.com/ifM8lax.png" } }
+                { id++, new Catalog { Name = "Bacalhau à Bras", ImageUrl = "http://i.imgur.com/Zrj0YHS.png", HeroImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2017/07/bacalhau-a-bras.jpg" } },
+                { id++, new Catalog { Name = "Carpaccio de Vieiras", ImageUrl = "http://i.imgur.com/1fy55SF.png", HeroImageUrl = "https://ogimg.infoglobo.com.br/rioshow/22953654-e29-886/FT1500A/690/image1.jpeg.jpg" } },
+                { id++, new Catalog { Name = "Talharim de Vieiras", ImageUrl = "http://i.imgur.com/DC0THKE.png", HeroImageUrl = "https://www.casalcozinha.com.br/wp-content/uploads/2020/09/talharim-com-vieiras-camaroes-e-lula.jpg" } },
+                { id++, new Catalog { Name = "Filetes de Sardinha", ImageUrl = "http://i.imgur.com/dQvbPjZ.png", HeroImageUrl = "https://www.vaqueiro.pt/-/media/project/upfield/whitelabels/vaqueiro-pt/assets/recipes/sync-images/32f28af9-55b1-4a17-b86a-266ccc9236c5.jpg?rev=c1eeaf214f1f4beda58aa661a1993b0d&w=1600" } },
+                { id++, new Catalog { Name = "Filetes de Peixe-espada", ImageUrl = "http://i.imgur.com/ifM8lax.png", HeroImageUrl = "https://cdn.e-konomista.pt/uploads/2019/10/filete-de-peixe-com-legumes-GI.jpg" } }
             };
         Categories[3].Catalogs = common.Values.ToList();
         Catalogs = Catalogs.Union(common).ToDictionary(k => k.Key, v => v.Value);
 
         common = new Dictionary<int, Catalog>()
             {
-                { id++, new Catalog { Name = "Espumante com Sorbet de Limão", ImageUrl = "http://i.imgur.com/v139jIW.png" } },
-                { id++, new Catalog { Name = "Cocktail", ImageUrl = "http://i.imgur.com/QapQTCR.png" } },
-                { id++, new Catalog { Name = "Caipirinha", ImageUrl = "http://i.imgur.com/U7Nfg3M.png" } },
-                { id++, new Catalog { Name = "Cocktail Tricolor", ImageUrl = "http://i.imgur.com/1joXJXl.png" } }
+                { id++, new Catalog { Name = "Espumante com Sorbet de Limão", ImageUrl = "http://i.imgur.com/v139jIW.png", HeroImageUrl = "https://www.vaqueiro.pt/-/media/project/upfield/whitelabels/vaqueiro-pt/assets/recipes/sync-images/3c277433-770a-425a-a498-1d6bf3951109.jpg?rev=f31ed1d6f9f141389e873b60ecf102fa&w=1600" } },
+                { id++, new Catalog { Name = "Cocktail", ImageUrl = "http://i.imgur.com/QapQTCR.png", HeroImageUrl = "https://www.thespruceeats.com/thmb/8aCKTFWGiCnoitlH-v8voyiwry4=/3489x3489/smart/filters:no_upscale()/kamikaze-cocktail-recipe-759313-hero-01-755709e3ac474259951edc0870b5b261.jpg" } },
+                { id++, new Catalog { Name = "Caipirinha", ImageUrl = "http://i.imgur.com/U7Nfg3M.png", HeroImageUrl = "https://coolicias.ao/wp-content/uploads/2021/01/Como-fazer-caipirinha.jpg" } },
+                { id++, new Catalog { Name = "Cocktail Tricolor", ImageUrl = "http://i.imgur.com/1joXJXl.png", HeroImageUrl = "https://www.thespruceeats.com/thmb/_71u2vTbYA27sz2Zo3IgPT-4xzo=/3595x2696/smart/filters:no_upscale()/_irish-flag-shooter-recipe-759704-hero-5bd7195946e0fb0051d2ffaf.jpg" } }
 
             };
         Categories[4].Catalogs = common.Values.ToList();
@@ -215,12 +215,12 @@ public class RestaurantInitializer
 
         common = new Dictionary<int, Catalog>()
             {
-                { id++, new Catalog { Name = "Brownies de Manteiga de Amendoim", ImageUrl = "https://media-manager.noticiasaominuto.com/1920/1589459543/naom_5ebd3a10c1d36.jpg?crop_params=eyJsYW5kc2NhcGUiOnsiY3JvcFdpZHRoIjoyNTYwLCJjcm9wSGVpZ2h0IjoxNDQwLCJjcm9wWCI6MCwiY3JvcFkiOjQ4fSwicG9ydHJhaXQiOnsiY3JvcFdpZHRoIjo5NTcsImNyb3BIZWlnaHQiOjE3MDIsImNyb3BYIjo1NzAsImNyb3BZIjo0fX0=" } },
-                { id++, new Catalog { Name = "Cupcakes", ImageUrl = "https://wallpaperaccess.com/full/264881.jpg" } },
-                { id++, new Catalog { Name = "Mouse de Chocolate", ImageUrl = "https://www.10wallpaper.com/wallpaper/2560x1600/1502/chocolate_mousse-High_Quality_HD_Wallpaper_2560x1600.jpg"} },
-                { id++, new Catalog { Name = "Panna Cotta", ImageUrl= "https://i.pinimg.com/originals/cf/ac/0c/cfac0cee8d9402661476d0500e3948c2.jpg"} },
-                { id++, new Catalog { Name = "Tarde de Natas", ImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2020/03/Tarte-de-natas-CHLM-4-scaled.jpg"} },
-                { id++, new Catalog { Name = "Bolo de Cenoura", ImageUrl = "https://s.zst.com.br/cms-assets/2021/07/bolo-de-cenoura-de-liquidificador.jpg"} }
+                { id++, new Catalog { Name = "Brownies de Manteiga de Amendoim", ImageUrl = "https://media-manager.noticiasaominuto.com/1920/1589459543/naom_5ebd3a10c1d36.jpg?crop_params=eyJsYW5kc2NhcGUiOnsiY3JvcFdpZHRoIjoyNTYwLCJjcm9wSGVpZ2h0IjoxNDQwLCJjcm9wWCI6MCwiY3JvcFkiOjQ4fSwicG9ydHJhaXQiOnsiY3JvcFdpZHRoIjo5NTcsImNyb3BIZWlnaHQiOjE3MDIsImNyb3BYIjo1NzAsImNyb3BZIjo0fX0=", HeroImageUrl = "https://media-manager.noticiasaominuto.com/1920/1589459543/naom_5ebd3a10c1d36.jpg?crop_params=eyJsYW5kc2NhcGUiOnsiY3JvcFdpZHRoIjoyNTYwLCJjcm9wSGVpZ2h0IjoxNDQwLCJjcm9wWCI6MCwiY3JvcFkiOjQ4fSwicG9ydHJhaXQiOnsiY3JvcFdpZHRoIjo5NTcsImNyb3BIZWlnaHQiOjE3MDIsImNyb3BYIjo1NzAsImNyb3BZIjo0fX0=" } },
+                { id++, new Catalog { Name = "Cupcakes", ImageUrl = "https://wallpaperaccess.com/full/264881.jpg", HeroImageUrl = "https://wallpaperaccess.com/full/264881.jpg" } },
+                { id++, new Catalog { Name = "Mouse de Chocolate", ImageUrl = "https://www.10wallpaper.com/wallpaper/2560x1600/1502/chocolate_mousse-High_Quality_HD_Wallpaper_2560x1600.jpg", HeroImageUrl = "https://www.10wallpaper.com/wallpaper/2560x1600/1502/chocolate_mousse-High_Quality_HD_Wallpaper_2560x1600.jpg" } },
+                { id++, new Catalog { Name = "Panna Cotta", ImageUrl= "https://i.pinimg.com/originals/cf/ac/0c/cfac0cee8d9402661476d0500e3948c2.jpg", HeroImageUrl = "https://i.pinimg.com/originals/cf/ac/0c/cfac0cee8d9402661476d0500e3948c2.jpg" } },
+                { id++, new Catalog { Name = "Tarde de Natas", ImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2020/03/Tarte-de-natas-CHLM-4-scaled.jpg", HeroImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2020/03/Tarte-de-natas-CHLM-4-scaled.jpg" } },
+                { id++, new Catalog { Name = "Bolo de Cenoura", ImageUrl = "https://s.zst.com.br/cms-assets/2021/07/bolo-de-cenoura-de-liquidificador.jpg", HeroImageUrl = "https://s.zst.com.br/cms-assets/2021/07/bolo-de-cenoura-de-liquidificador.jpg" } }
 
             };
         Categories[5].Catalogs = common.Values.ToList();
@@ -620,7 +620,7 @@ public class RestaurantInitializer
 
         common = new Dictionary<int, CatalogInfo>()
             {
-                { id++, new CatalogInfo { Size = "Normal", Price = 3.50f } }
+                { id++, new CatalogInfo { Size = "Normal", Price = 3.59f } }
             };
         Catalogs[25].CatalogInfos = common.Values.ToList();
         CatalogInfos = CatalogInfos.Union(common).ToDictionary(k => k.Key, v => v.Value);
@@ -634,7 +634,7 @@ public class RestaurantInitializer
 
         common = new Dictionary<int, CatalogInfo>()
             {
-                { id++, new CatalogInfo { Size = "Normal", Price = 5.50f } }
+                { id++, new CatalogInfo { Size = "Normal", Price = 5.59f } }
             };
         Catalogs[27].CatalogInfos = common.Values.ToList();
         CatalogInfos = CatalogInfos.Union(common).ToDictionary(k => k.Key, v => v.Value);
@@ -658,6 +658,34 @@ public class RestaurantInitializer
                 { id++, new CatalogInfo { Size = "Normal", Price = 4.99f } }
             };
         Catalogs[30].CatalogInfos = common.Values.ToList();
+        CatalogInfos = CatalogInfos.Union(common).ToDictionary(k => k.Key, v => v.Value);
+
+        common = new Dictionary<int, CatalogInfo>()
+            {
+                { id++, new CatalogInfo { Size = "Normal", Price = 2.99f } }
+            };
+        Catalogs[31].CatalogInfos = common.Values.ToList();
+        CatalogInfos = CatalogInfos.Union(common).ToDictionary(k => k.Key, v => v.Value);
+
+        common = new Dictionary<int, CatalogInfo>()
+            {
+                { id++, new CatalogInfo { Size = "Normal", Price = 3.99f } }
+            };
+        Catalogs[32].CatalogInfos = common.Values.ToList();
+        CatalogInfos = CatalogInfos.Union(common).ToDictionary(k => k.Key, v => v.Value);
+
+        common = new Dictionary<int, CatalogInfo>()
+            {
+                { id++, new CatalogInfo { Size = "Normal", Price = 5.99f } }
+            };
+        Catalogs[33].CatalogInfos = common.Values.ToList();
+        CatalogInfos = CatalogInfos.Union(common).ToDictionary(k => k.Key, v => v.Value);
+
+        common = new Dictionary<int, CatalogInfo>()
+            {
+                { id++, new CatalogInfo { Size = "Normal", Price = 3.99f } }
+            };
+        Catalogs[34].CatalogInfos = common.Values.ToList();
         CatalogInfos = CatalogInfos.Union(common).ToDictionary(k => k.Key, v => v.Value);
 
         context.SaveChanges();

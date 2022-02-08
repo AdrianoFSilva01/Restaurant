@@ -15,6 +15,16 @@ public class CategoryConfiguration : IEntityTypeConfiguration<Category>
         entity.Property(c => c.Name)
               .IsRequired();
 
+        entity.Property(c => c.ImageUrl)
+              .IsRequired()
+              .HasMaxLength(300)
+              .IsUnicode(false);
+
+        entity.Property(c => c.HeroImageUrl)
+              .IsRequired()
+              .HasMaxLength(300)
+              .IsUnicode(false);
+
         entity.HasIndex("Name")
               .IsUnique();
 
