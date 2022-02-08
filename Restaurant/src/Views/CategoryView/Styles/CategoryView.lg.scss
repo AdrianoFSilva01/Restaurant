@@ -1,0 +1,13 @@
+@screen lg {
+    .category-container {
+        .animation-container {
+            .category {
+                @apply p-8 bg-black bg-opacity-40;
+
+                &.selected {
+                    @apply bg-opacity-80;
+                }
+            }
+        }
+    }
+}

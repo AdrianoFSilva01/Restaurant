@@ -1,0 +1,30 @@
+.category-container {
+    @apply grid grid-cols-3 gap-4;
+
+    .animation-container {
+        @apply opacity-0 pointer-events-none;
+
+        .category {
+            @apply relative bg-gray-700 text-white flex flex-col items-center p-4 space-y-4 cursor-pointer;
+
+            &.selected {
+                @apply bg-gold;
+            }
+        }
+    }
+}
+
+.fade-animation {
+    animation: fadeAnim 0.5s forwards;
+}
+
+@keyframes fadeAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(20%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
