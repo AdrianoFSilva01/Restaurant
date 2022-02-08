@@ -8,6 +8,7 @@ using Restaurant.API.Dtos.CategoryDtos.GetCategories;
 using Restaurant.API.Dtos.CategoryDtos.GetCategory;
 using Restaurant.API.Dtos.CategoryDtos.UpdateCategory;
 using Restaurant.API.Dtos.CategoryDtos.WeeklyCatalogs;
+using Restaurant.API.Entitites.CatalogEntities;
 using Restaurant.API.Entitites.CategoryEntities;
 using Restaurant.API.Persistence;
 using System.Net;
@@ -23,11 +24,46 @@ public class CategoryController : ControllerBase
         _context = context;
     }
 
+    [HttpGet("all")]
+    public async Task<ActionResult<List<AllDetail>>> GetAll()
+    {
+        List<AllDetail> categories = await _context.Categories
+            .Select(category => new AllDetail
+            {
+                Id = category.Id,
+                Name = category.Name,
+                ImageUrl = category.ImageUrl,
+                HeroImageUrl = category.HeroImageUrl,
+                Catalogs = category.Catalogs
+                    .Select(catalog => new AllCatalogDetail
+                    {
+                        Id = catalog.Id,
+                        Name = catalog.Name,
+                        HeroImageUrl = catalog.HeroImageUrl,
+                        HaveIngredients = catalog.Ingredients.Count > 0,
+                        CatalogInfos = catalog.CatalogInfos
+                            .Select(catalogInfo => new AllCatalogInfoDetails
+                            {
+                                Size = catalogInfo.Size,
+                                Price = catalogInfo.Price,
+                                Description = catalogInfo.Description
+                            }).OrderBy(cI => cI.Price).ToList(),
+                        Ingredients = catalog.Ingredients
+                            .Select(ingredient => new AllCatalogIngredient
+                            {
+                                Id = ingredient.Id,
+                                Name = ingredient.Name
+                            }).ToList()
+                    }).ToList()
+            })
+            .ToListAsync();
+
+        return categories;
+    }
+
     [HttpGet]
     public async Task<ActionResult<List<CategoryDetail>>> GetCategories()
     {
-        RestaurantInitializer.Initialize(_context);
-
         List<CategoryDetail> categories = await _context.Categories
             .Select(category => new CategoryDetail { Id = category.Id, Name = category.Name, ImageUrl = category.ImageUrl })
             .ToListAsync();
@@ -85,10 +121,18 @@ public class CategoryController : ControllerBase
                                 Description = catalogInfo.Description
                             }).OrderBy(cI => cI.Price).ToList()
                     })
-                    .Take(3)
                     .ToList()
             })
             .ToListAsync();
+
+   
+        foreach(var c in category)
+        {
+            if (c.Catalogs.Count > 3)
+            {
+                c.Catalogs.RemoveRange(3, c.Catalogs.Count - 3);
+            }
+        }
 
         return category;
     }
@@ -115,7 +159,7 @@ public class CategoryController : ControllerBase
                             Size = catalogInfo.Size,
                             Price = catalogInfo.Price,
                             Description = catalogInfo.Description
-                        }).ToList()
+                        }).OrderBy(cI => cI.Price).ToList()
                 }).ToList()
             )
             .ToListAsync();
