@@ -1,19 +1,21 @@
 .mainView {
+    @apply flex-1;
+
     > :nth-child(n) {
         @apply my-12;
     }
 
-    :first-child {
+    > :first-child {
         @apply mt-0;
     }
 }
 
 .fade-enter-active,
 .fade-leave-active {
-    @apply transition-opacity duration-1000;
+    @apply transition-opacity duration-1000 pointer-events-none;
 }
 
 .fade-enter-from,
 .fade-leave-to {
-    @apply opacity-0;
+    @apply opacity-0 pointer-events-none;
 }
