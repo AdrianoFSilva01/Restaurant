@@ -1,0 +1,77 @@
+.catalog-container {
+    @apply grid grid-cols-2 gap-4 px-2 auto-rows-fr;
+
+    .animation-container {
+        @apply opacity-0 pointer-events-none;
+
+        .catalog {
+            @apply relative flex text-white flex-col flex-shrink-0 items-center rounded border-2 border-white w-full h-full cursor-pointer;
+            min-height: 15rem;
+            @screen lg {
+                min-height: 20rem;
+            }
+
+            .selected-sizes-container {
+                @apply absolute top-0 left-0 p-0.5 flex space-x-1 bg-opacity-60 w-full;
+            }
+
+            .catalog-name {
+                @apply relative w-full text-center text-lg;
+
+                &:before {
+                    @apply absolute w-full left-0 bottom-0 bg-gradient-to-t from-black to-transparent opacity-60;
+                    height: 150%;
+                    z-index: -1;
+                    content: "";
+                }
+            }
+
+            .price-display {
+                @apply flex items-end;
+            }
+
+            .quantity-display {
+                @apply w-full bg-black bg-opacity-60 text-center;
+
+                .quantity-button {
+                    @apply bg-gold px-4 text-black font-bold;
+
+                    &:disabled {
+                        @apply bg-gray-500;
+                    }
+                }
+            }
+
+            .sizes-container {
+                @apply text-center flex justify-end text-sm bg-black bg-opacity-60 p-1 space-x-1;
+
+                .size {
+                    @apply flex-grow text-black rounded;
+                }
+            }
+        }
+
+        .selected {
+            @apply border-gold;
+        }
+    }
+}
+
+.selected {
+    @apply border-gold;
+}
+
+.fade-animation {
+    animation: fadeAnim 0.5s forwards;
+}
+
+@keyframes fadeAnim {
+    0% {
+        opacity: 0;
+        transform: translateY(20%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}

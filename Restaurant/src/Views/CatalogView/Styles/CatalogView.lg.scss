@@ -1,0 +1,25 @@
+@screen lg {
+    .catalog-container {
+        .animation-container {
+            .catalog {
+                min-height: 20rem;
+
+                .selected-sizes-container {
+                    @apply hidden;
+                }
+
+                .quantity-display {
+                    @apply flex-1 bg-transparent;
+                }
+
+                .sizes-container {
+                    @apply flex-col space-x-0 space-y-1;
+
+                    .size {
+                        @apply flex flex-1 justify-evenly py-1;
+                    }
+                }
+            }
+        }
+    }
+}
