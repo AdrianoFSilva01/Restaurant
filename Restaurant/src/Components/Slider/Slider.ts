@@ -236,7 +236,9 @@ export default class Slider extends Vue {
     insertInitialImages(): void {
         (this.containerElement.children[0] as HTMLImageElement).src = this.images[this.currentIndex];
         (this.containerElement.children[1] as HTMLImageElement).src = this.images[this.previousIndex];
+        (this.containerElement.children[1] as HTMLElement).style.opacity = "0";
         (this.containerElement.children[2] as HTMLImageElement).src = this.images[this.nextIndex];
+        (this.containerElement.children[2] as HTMLElement).style.opacity = "0";
     }
 
     insertImageElements(): void {
