@@ -95,7 +95,7 @@ export default class MainView extends mixins(ArrowDirectionMixin) {
     }
 
     changeInlineListIndex(): void {
-        const carouselElementOfIndex: HTMLElement = document.getElementsByClassName("carouselItem")[this.carouselIndex] as HTMLElement;
+        const carouselElementOfIndex: HTMLElement = document.getElementsByClassName("carousel-item")[this.carouselIndex] as HTMLElement;
         const idOfElement: number = Number(carouselElementOfIndex.id.split("carouselCategory")[1]);
 
         if(this.inlineList.currentIndex !== idOfElement) {
