@@ -12,8 +12,6 @@ import MainView from "./Views/MainView/MainView.vue";
 import OrderView from "./Views/OrderView/OrderView.vue";
 import SummaryView from "./Views/SummaryView/SummaryView.vue";
 
-console.log("a");
-
 const app: App<Element> = createApp(MasterPage);
 
 const router: Router = createRouter({
