@@ -24,6 +24,13 @@ public class CategoryController : ControllerBase
         _context = context;
     }
 
+    [HttpGet("initialize")]
+    public IActionResult Initialize()
+    {
+        RestaurantInitializer.Initialize(_context);
+        return Ok();
+    }
+
     [HttpGet("all")]
     public async Task<ActionResult<List<AllDetail>>> GetAll()
     {
