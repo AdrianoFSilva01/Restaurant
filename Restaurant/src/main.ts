@@ -12,6 +12,8 @@ import MainView from "./Views/MainView/MainView.vue";
 import OrderView from "./Views/OrderView/OrderView.vue";
 import SummaryView from "./Views/SummaryView/SummaryView.vue";
 
+console.log("a");
+
 const app: App<Element> = createApp(MasterPage);
 
 const router: Router = createRouter({
@@ -28,7 +30,7 @@ const router: Router = createRouter({
 app.use(router);
 
 app.provide(nameof(axios), axios.create({
-    baseURL: "/api/"
+    baseURL: "https://restaurantsite.azurewebsites.net"
 }));
 
 app.use(directives);

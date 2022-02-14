@@ -10,6 +10,8 @@ builder.Services.AddControllers().AddFluentValidation();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Logging.AddConsole();
+
 var DbPath = System.IO.Path.Join(Directory.GetCurrentDirectory(), "Restaurant.db");
 
 builder.Services.AddDbContext<RestaurantDbContext>(
