@@ -36,5 +36,14 @@ export default {
                 (childs[i] as HTMLElement).classList.add(classToAdd);
             }, (delayValue * i) * 1000);
         }
+    },
+    unmounted: function(el: HTMLElement, binding: DirectiveBinding): void {
+        const className: string = binding.value[1];
+        const classToAdd: string = binding.value[2];
+        const childs: HTMLCollection = el.getElementsByClassName(className);
+
+        for(let i: number = 0; i < childs.length; i++) {
+            childs[i].classList.remove(classToAdd);
+        }
     }
 };
