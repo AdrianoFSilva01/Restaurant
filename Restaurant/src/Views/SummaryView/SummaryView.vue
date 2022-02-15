@@ -2,9 +2,9 @@
     <div>
         <div class="space-y-2 lg:space-y-6 px-4 m-auto" style="max-width: 62rem" v-delayed-childs="[0.1, 'category-section', 'fade-animation', true]">
             <template v-for="([categoryId, catalogs], index) in categories" :key="categoryId">
-                <div class="category-section">
+                <div v-if="catalogs.size" class="category-section">
                     <router-link to="/order/catalog">
-                        <div class="lg:flex" v-if="catalogs.size" @click="selectedCategory(Number(index))">
+                        <div class="lg:flex" @click="selectedCategory(Number(index))">
                             <div class="category-name">
                                 {{ getCategoryName(categoryId) }}
                             </div>
