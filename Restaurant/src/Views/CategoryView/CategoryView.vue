@@ -1,7 +1,7 @@
 <template>
-    <div>
-        <div class="category-container" v-delayed-childs="[0.1, 'animation-container' ,'fade-animation', true]">
-            <template v-if="Categories">
+    <section>
+        <template v-if="Categories.length">
+            <div class="category-container" v-delayed-childs="[0.1, 'animation-container' ,'fade-animation', true]">
                 <template v-for="category in Categories" :key="category.id">
                     <div class="animation-container" @animationend="onAnimationEnd">
                         <div class="category" :class="store?.state.selectedCategories.has(category.id) ? 'selected' : ''" @click="onCategoryClick(category.id)">
@@ -13,9 +13,16 @@
                         </div>
                     </div>
                 </template>
-            </template>
-        </div>
-    </div>
+            </div>
+        </template>
+        <template v-else>
+            <div class="w-full flex justify-center">
+                <svg class="w-5 animate-spin" viewBox="0 0 100 100">
+                    <use href="@/Assets/Images/Loading.svg#loading" />
+                </svg>
+            </div>
+        </template>
+    </section>
 </template>
 
 <script lang="ts" src="./CategoryView.ts" />

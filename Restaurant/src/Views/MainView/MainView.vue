@@ -44,6 +44,13 @@
                 </div>
             </section>
         </template>
+        <template v-else>
+            <section class="w-full flex justify-center">
+                <svg class="w-5 animate-spin" viewBox="0 0 100 100">
+                    <use href="@/Assets/Images/Loading.svg#loading" />
+                </svg>
+            </section>
+        </template>
         <section class="restaurant-info" v-in-viewport="'fade-animation'">
             <div class="space-y-4 flex-1">
                 <img class="w-full" src="https://c1.wallpaperflare.com/preview/440/184/9/restaurant-glasses-drink-lichtspiel.jpg" />
@@ -71,8 +78,8 @@
                 </div>
             </div>
         </section>
-        <section class="desserts" v-in-viewport="'fade-animation'">
-            <template v-if="DessertCatalogs">
+        <template v-if="DessertCatalogs">
+            <section class="desserts" v-in-viewport="'fade-animation'">
                 <Slider ref="dessertsSlider" class="slider" :images="catalogImage" v-model="dessertsCarouselIndex" @interactionstart="sliderInteractionStart" @interactionmove="sliderInteractionMoving" @interactionend="sliderInteractionEnded" />
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
@@ -99,8 +106,15 @@
                         />
                     </div>
                 </div>
-            </template>
-        </section>
+            </section>
+        </template>
+        <template v-else>
+            <section class="w-full flex justify-center">
+                <svg class="w-5 animate-spin" viewBox="0 0 100 100">
+                    <use href="@/Assets/Images/Loading.svg#loading" />
+                </svg>
+            </section>
+        </template>
     </main>
 </template>
 
