@@ -54,7 +54,7 @@ public class RestaurantInitializer
                 {2, new Category { Name = "Carnes", ImageUrl = "http://svgshare.com/i/Dwz.svg", HeroImageUrl = "https://supermercadomanos.com.br/wp-content/uploads/2017/07/Carnes.jpg" } },
                 {3, new Category { Name = "Peixes", ImageUrl = "http://svgshare.com/i/DxV.svg", HeroImageUrl = "https://www.bestguide.pt/wp-content/uploads/2018/05/peixe.jpg" } },
                 {4, new Category { Name = "Bebidas", ImageUrl = "http://svgshare.com/i/DwK.svg", HeroImageUrl = "https://www.royalcaribbean.com.br/wp-content/uploads/2018/05/pacote-de-bebidas-1.jpg" } },
-                {5, new Category { Name = "Sobremesa", ImageUrl = "http://svgshare.com/i/Dx0.svg", HeroImageUrl = "https://static.vecteezy.com/ti/fotos-gratis/p1/3699787-delicioso-doce-buffet-com-cupcakes-macaroons-outras-sobremesas-gr%C3%A1tis-foto.jpg" } }
+                {5, new Category { Name = "Sobremesas", ImageUrl = "https://svgshare.com/i/eTu.svg", HeroImageUrl = "https://static.vecteezy.com/ti/fotos-gratis/p1/3699787-delicioso-doce-buffet-com-cupcakes-macaroons-outras-sobremesas-gr%C3%A1tis-foto.jpg" } }
         };
         context.Categories.AddRange(Categories.Values);
 
