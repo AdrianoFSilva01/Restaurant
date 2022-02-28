@@ -30,7 +30,7 @@
                 </a>
             </nav>
             <div class="flex flex-1 justify-end items-center space-x-4">
-                <div class="relative flex justify-center" @click.capture="showDropDown">
+                <div class="relative flex justify-center delayedAnimation" @click.capture="showDropDown">
                     <div v-click-outside="hideDropDown">
                         <svg class="w-6" viewBox="0 0 100 100">
                             <use :href="selectedTheme.imageUrl" />
@@ -49,11 +49,11 @@
                         </template>
                     </div>
                 </div>
-                <div class="hamburger-menu lg:hidden" @click="hamburgerMenuOnClick">
+                <nav class="hamburger-menu lg:hidden delayedAnimation" @click="hamburgerMenuOnClick">
                     <hr />
                     <hr />
                     <hr />
-                </div>
+                </nav>
                 <nav class="navigation-button delayedAnimation">
                     <div class="button" @click="scrollToTop">
                         <router-link to="/order">
