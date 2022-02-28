@@ -1,5 +1,5 @@
 .category-section {
-    @apply opacity-0;
+    @apply opacity-0 dark:text-white;
 
     .category-name {
         @apply bg-gold font-bold py-1 pl-2;

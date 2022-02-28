@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="flex flex-col" style="min-height: 100vh">
+    <div id="app" class="flex flex-col transition-colors duration-300 dark:bg-dark" style="min-height: 100vh">
         <transition name="fade">
             <Overlay v-if="displayOverlay" :display="displayOverlay" @close-button-clicked="displayOverlay = false"  />
         </transition>

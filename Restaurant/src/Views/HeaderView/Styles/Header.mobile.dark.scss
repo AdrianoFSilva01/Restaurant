@@ -1,0 +1,13 @@
+.header-container {
+    @apply dark:text-white;
+
+    .navigation-image {
+        @apply dark:text-white;
+    }
+
+    .hamburger-menu {
+        :nth-child(n) {
+            @apply dark:border-white;
+        }
+    }
+}

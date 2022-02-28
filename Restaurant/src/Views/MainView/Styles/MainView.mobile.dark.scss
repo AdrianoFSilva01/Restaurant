@@ -1,0 +1,27 @@
+.restaurant {
+    .arrows-container {
+        .animated-arrows {
+            :nth-child(n) {
+                @apply dark:bg-white;
+            }
+        }
+    }
+}
+
+.desserts {
+    .carousel-item {
+        @apply dark:text-white;
+    }
+
+    .left-arrow {
+        :nth-child(n) {
+            @apply dark:bg-white;
+        }
+    }
+
+    .right-arrow {
+        :nth-child(n) {
+            @apply dark:bg-white;
+        }
+    }
+}

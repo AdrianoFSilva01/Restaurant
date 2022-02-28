@@ -1,7 +1,7 @@
 @screen md {
     .desserts {
         .carousel-item {
-            @apply w-60 border-r last:border-r-0 border-black;
+            @apply w-60 border-r last:border-r-0 border-black dark:border-white;
         }
     }
 }

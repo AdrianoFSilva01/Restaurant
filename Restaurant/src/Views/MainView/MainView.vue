@@ -46,7 +46,7 @@
         </template>
         <template v-else>
             <section class="w-full flex justify-center">
-                <svg class="w-5 animate-spin" viewBox="0 0 100 100">
+                <svg class="w-5 animate-spin dark:text-white" viewBox="0 0 100 100">
                     <use href="@/Assets/Images/Loading.svg#loading" />
                 </svg>
             </section>
@@ -57,7 +57,7 @@
                 <img class="w-full hidden lg:block" src="https://static.independent.co.uk/s3fs-public/thumbnails/image/2020/06/05/13/1251-indybest.jpg?width=1200" />
             </div>
             <div class="flex-1">
-                <div class="space-y-8 sticky top-12">
+                <div class="space-y-8 sticky top-12 dark:text-white">
                     <h1 class="text-3xl lg:text-5xl">
                         What stays,
                         <br />
@@ -90,7 +90,13 @@
                         />
                     </div>
                     <div class="w-full overflow-hidden">
-                        <Carousel ref="dessertsCarousel" class="flex transition-transform duration-500 flex-shrink w-full" :center-selected="true" v-model="dessertsCarouselIndex" @interactionstart="dessertsCarouselInteractionStart" @interactionmove="dessertsCarouselInteractionMoving" @interactionend="dessertsCarouselInteractionEnded">
+                        <Carousel ref="dessertsCarousel" class="flex transition-transform duration-500 flex-shrink w-full"
+                                  :center-selected="true"
+                                  v-model="dessertsCarouselIndex"
+                                  @interactionstart="dessertsCarouselInteractionStart"
+                                  @interactionmove="dessertsCarouselInteractionMoving"
+                                  @interactionend="dessertsCarouselInteractionEnded"
+                        >
                             <template v-for="(name, index) in catalogName" :key="index">
                                 <div class="carousel-item">
                                     {{ name }}
@@ -110,7 +116,7 @@
         </template>
         <template v-else>
             <section class="w-full flex justify-center">
-                <svg class="w-5 animate-spin" viewBox="0 0 100 100">
+                <svg class="w-5 animate-spin dark:text-white" viewBox="0 0 100 100">
                     <use href="@/Assets/Images/Loading.svg#loading" />
                 </svg>
             </section>

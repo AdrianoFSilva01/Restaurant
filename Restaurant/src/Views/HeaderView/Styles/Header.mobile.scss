@@ -1,36 +1,16 @@
 .header-container {
-    @apply flex p-8 items-center bg-white transition-all ease-linear duration-300 transform;
+    @apply w-full flex relative p-8 items-center transition-all ease-linear duration-300 transform;
 
     .navigation-text {
         @apply leading-3 text-sm flex-1;
     }
 
     .navigation-image {
-        @apply flex justify-center h-20 flex-1;
+        @apply flex justify-center w-full;
     }
 
     .navigation-icon {
-        @apply flex-1 flex justify-end items-center space-x-4;
-
-        .hamburger-menu {
-            @apply w-4 space-y-1 cursor-pointer;
-
-            :nth-child(n) {
-                @apply border-black w-full transition-all duration-500;
-            }
-
-            &:hover {
-                :nth-child(1) {
-                    @apply transform -translate-y-0.5;
-                }
-                :nth-child(2) {
-                    @apply opacity-0;
-                }
-                :nth-child(3) {
-                    @apply transform translate-y-0.5;
-                }
-            }
-        }
+        @apply hidden;
 
         .navigation-pages {
             @apply hidden;
@@ -38,8 +18,26 @@
     }
 
     .navigation-button {
-        .button {
-            @apply hidden;
+        @apply hidden;
+    }
+
+    .hamburger-menu {
+        @apply w-4 space-y-1 cursor-pointer;
+
+        :nth-child(n) {
+            @apply border-black w-full transition-all duration-500;
+        }
+
+        &:hover {
+            :nth-child(1) {
+                @apply transform -translate-y-0.5;
+            }
+            :nth-child(2) {
+                @apply opacity-0;
+            }
+            :nth-child(3) {
+                @apply transform translate-y-0.5;
+            }
         }
     }
 }

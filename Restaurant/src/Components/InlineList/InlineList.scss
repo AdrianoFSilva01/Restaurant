@@ -1,5 +1,5 @@
 .inline-list-container {
-    @apply flex;
+    @apply flex dark:text-white;
 
     .list-item {
         @apply flex items-center;

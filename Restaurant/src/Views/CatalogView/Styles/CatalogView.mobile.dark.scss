@@ -1,0 +1,11 @@
+.catalog-container {
+    .animation-container {
+        .catalog {
+            @apply dark:border-dark-gray;
+        }
+
+        .selected {
+            @apply dark:border-gold;
+        }
+    }
+}

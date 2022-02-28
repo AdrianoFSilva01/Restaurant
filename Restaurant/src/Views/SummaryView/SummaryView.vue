@@ -51,7 +51,7 @@
                     </router-link>
                 </div>
             </template>
-            <div class="flex justify-between text-lg">
+            <div class="flex justify-between text-lg dark:text-white">
                 <div>
                     Total:
                 </div>

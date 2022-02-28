@@ -17,7 +17,7 @@
         </template>
         <template v-else>
             <div class="w-full flex justify-center">
-                <svg class="w-5 animate-spin" viewBox="0 0 100 100">
+                <svg class="w-5 animate-spin dark:text-white" viewBox="0 0 100 100">
                     <use href="@/Assets/Images/Loading.svg#loading" />
                 </svg>
             </div>

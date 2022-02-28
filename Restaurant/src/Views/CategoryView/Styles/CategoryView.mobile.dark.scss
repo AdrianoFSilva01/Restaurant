@@ -1,0 +1,11 @@
+.category-container {
+    .animation-container {
+        .category {
+            @apply dark:bg-dark-gray;
+
+            &.selected {
+                @apply dark:bg-gold;
+            }
+        }
+    }
+}

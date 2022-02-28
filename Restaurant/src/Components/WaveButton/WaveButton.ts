@@ -12,4 +12,10 @@ export default class WaveButton extends Vue{
         (this.$el as HTMLElement).style.setProperty("--span-text", this.textColor);
         (this.$el as HTMLElement).style.setProperty("--span-hover-text", this.textHoverColor);
     }
+
+    updated(): void {
+        (this.$el as HTMLElement).style.setProperty("--background", this.backgroundColor);
+        (this.$el as HTMLElement).style.setProperty("--span-text", this.textColor);
+        (this.$el as HTMLElement).style.setProperty("--span-hover-text", this.textHoverColor);
+    }
 }
