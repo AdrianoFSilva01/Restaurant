@@ -31,7 +31,7 @@
             </nav>
             <div class="flex flex-1 justify-end items-center space-x-4">
                 <div class="relative flex justify-center delayedAnimation" @click.capture="showDropDown">
-                    <div v-click-outside="hideDropDown">
+                    <div class="cursor-pointer" v-click-outside="hideDropDown">
                         <svg class="w-6" viewBox="0 0 100 100">
                             <use :href="selectedTheme.imageUrl" />
                         </svg>
