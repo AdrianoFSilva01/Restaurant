@@ -177,7 +177,7 @@ public class RestaurantInitializer
             {
                 { id++, new Catalog { Name = "Panados no Forno", ImageUrl = "http://i.imgur.com/kceE8UD.png", HeroImageUrl = "https://mamapaleo.blogs.nit.pt/wp-content/uploads/2017/06/IMG_8202-1-1300x731.jpg" } },
                 { id++, new Catalog { Name = "Jardineira de Perú", ImageUrl = "http://i.imgur.com/ZouoIsy.png", HeroImageUrl = "https://www.saborintenso.com/images/receitas/Jardineira-de-Peru-com-Cogumelos-SI-2.jpg" } },
-                { id++, new Catalog { Name = "Peru", ImageUrl = "http://i.imgur.com/GsrXqKt.png", HeroImageUrl = "https://fortissima.com.br/wp-content/uploads/2015/11/peru-de-natal-istock-getty-images1.jpg" } },
+                { id++, new Catalog { Name = "Peru", ImageUrl = "http://i.imgur.com/GsrXqKt.png", HeroImageUrl = "https://claudia.abril.com.br/wp-content/uploads/2020/01/como-fazer-um-peru-perfeito-para-o-natal-nsphotostudio-1.jpg" } },
                 { id++, new Catalog { Name = "Strogonoff", ImageUrl = "http://i.imgur.com/NYHMnBo.png", HeroImageUrl = "https://www.unileverfoodsolutions.com.br/dam/global-ufs/mcos/SLA/calcmenu/recipes/BR-recipes/chicken-&-other-poultry-dishes/strogonoff-de-frango/main-header.jpg" } },
                 { id++, new Catalog { Name = "Borrego em Crosta de Alecrim", ImageUrl = "http://i.imgur.com/rSLdbGK.png", HeroImageUrl = "https://www.teleculinaria.pt/wp-content/uploads/2018/03/perna-de-borrego-com-crosta-de-broa.jpg" } },
                 { id++, new Catalog { Name = "Quiche de Frango", ImageUrl = "http://i.imgur.com/KX1oY9N.png", HeroImageUrl = "https://cdn.vidaativa.pt/uploads/2020/01/receitas-quiche-frango.jpg" } },
